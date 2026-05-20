@@ -1,0 +1,62 @@
+# Conclusiones {#conclusiones}
+
+## Respuesta a la pregunta de investigación
+
+**¿Tiene relación el género de un videojuego con su precio en PlayStation?**
+
+**Sí, y la relación es sustancial.** El género es el predictor más consistente del precio, por encima de plataforma y año de lanzamiento. La diferencia entre el género más caro (*Simulation Racing*, $39.99) y el más barato (*Bowling*, $0.99) es un factor de **40 veces** — respaldado tanto por el EDA como por los modelos ML, donde las variables de género son sistemáticamente las más importantes.
+
+## Cumplimiento de objetivos específicos
+
+| Objetivo | Resultado |
+|---|---|
+| **OE1** — Distribución de precios | Bimodal con sesgo positivo. Media $12.07, mediana $7.99. 86% de juegos por debajo de $20. |
+| **OE2** — Comparar medianas por género | Más caros: Simulation Racing ($39.99), Open World ($24.99). Más baratos: Bowling ($0.99), Pinball ($1.99). |
+| **OE3** — Variabilidad por género | Géneros masivos con mayor dispersión. Action va de $0.19 a $59.99 dentro del mismo género. |
+| **OE4** — PS4 vs PS5 | PS5 supera o iguala a PS4 en el 71% de géneros analizados. |
+| **OE5** — Saturación de mercado | Correlación negativa volumen-precio: más competencia = precios más bajos. |
+| **OE6** — Visualizaciones | Distribuciones, boxplots, scatter plots y matriz de correlación implementados con ggplot2. |
+| **OE7** — Modelos predictivos | Random Forest es el mejor modelo (R²=0.3244, RMSE=$9.85, MAE=$6.66). CV de 5 pliegues confirma estabilidad. |
+
+## Hallazgos diferenciadores
+
+1. **La saturación indie crea pisos de precio por género:** publishers de alto volumen publican docenas de títulos por mes a precios mínimos, colapsando el percentil 25 por debajo de $2 en géneros masivos. El modelo captura esto en los coeficientes de género.
+
+2. **El precio por hora de entretenimiento explica los géneros caros:** Open World, Role Playing y Action-RPG prometen experiencias largas. El consumidor acepta pagar más porque el costo-hora resultante es competitivo. Los modelos de árboles capturan esta lógica no lineal mejor que Lasso.
+
+3. **El género predice el precio mejor que la generación de consola:** un *Puzzle* de PS5 sigue costando menos que un *Role Playing* de PS4. La estrategia de pricing debe definirse por género antes que por plataforma.
+
+## Implicaciones prácticas para desarrolladores
+
+| Situación | Recomendación |
+|---|---|
+| Juego de *Action* o *Puzzle* | Precio de referencia: $2.99–$9.99. Superar ese rango requiere propuesta de valor clara frente a la oferta indie existente. |
+| Juego de *Role Playing* u *Open World* | Espacio para $19.99–$39.99 si duración y calidad lo justifican. |
+| Lanzamiento en PS5 | Mayor margen en géneros de experiencia larga. El género sigue siendo el factor determinante. |
+| Estimación de precio de mercado | El modelo Random Forest puede usarse como herramienta de referencia (margen ≈ ±MAE dólares). |
+
+## Trabajo futuro
+
+1. **Optimización de hiperparámetros** de XGBoost con `tidymodels::tune_grid()`.
+2. **Stacking de modelos** (Lasso + RF + XGBoost con meta-modelo).
+3. **Variables adicionales:** Metacritic, trofeos, ESRB/PEGI, popularidad del desarrollador.
+4. **Análisis longitudinal** si se obtiene historial de precios (descuentos por género y temporada).
+5. **Segmentación indie vs. AAA** para modelos predictivos más precisos en cada extremo del catálogo.
+6. **Comparativa multi-plataforma** (Steam, Xbox) para determinar si los patrones son específicos de PlayStation.
+
+---
+
+## Referencias
+
+- Arlot, S., & Celisse, A. (2010). A survey of cross-validation procedures. *Statistics Surveys*, 4, 40–79.
+- Breiman, L. (2001). Random forests. *Machine Learning*, 45(1), 5–32.
+- Chen, T., & Guestrin, C. (2016). XGBoost. *Proc. 22nd ACM SIGKDD*, 785–794.
+- Friedman, J., Hastie, T., & Tibshirani, R. (2010). Regularization paths via coordinate descent. *JSS*, 33(1), 1–22.
+- Kruglov, A. (2025). *Gaming Profiles 2025*. Kaggle. https://www.kaggle.com/datasets/artyomkruglov/gaming-profiles-2025-steam-playstation-xbox
+- Newzoo. (2023). *Global Games Market Report 2023*.
+- R Core Team. (2024). *R: A language and environment for statistical computing*.
+- Shapiro, C., & Varian, H. R. (1999). *Information rules*. Harvard Business School Press.
+- Wickham, H., et al. (2019). Welcome to the tidyverse. *JOSS*, 4(43), 1686.
+- Wickham, H. (2016). *ggplot2: Elegant graphics for data analysis*. Springer-Verlag.
+
+<!--chapter:end:07-conclusiones.Rmd-->

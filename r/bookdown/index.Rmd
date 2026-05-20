@@ -1,0 +1,72 @@
+---
+title: "PS Gaming Analytics 2025"
+subtitle: "Análisis estadístico y modelado predictivo de precios en PlayStation Store"
+author: "Gaming Analytics Project"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+lang: es
+
+output:
+ bookdown::gitbook:
+ split_by: chapter
+ toc_depth: 3
+
+description: |
+ Análisis de la relación entre género de videojuego y precio en PlayStation,
+ usando Gaming Profiles 2025. Incluye EDA completo y modelos Lasso,
+ Random Forest y XGBoost.
+
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+ echo = FALSE,
+ warning = FALSE,
+ message = FALSE
+)
+```
+
+# Prefacio {-}
+
+Análisis estadístico del catálogo PlayStation Store centrado en la relación género-precio, basado en el dataset **Gaming Profiles 2025** (Kruglov, 2025), CC0 en Kaggle. Se estructura en dos bloques:
+
+1. **EDA:** distribución de precios, comparativas por género, análisis PS4 vs. PS5 y correlaciones entre monedas.
+
+2. **Modelado predictivo:** Lasso, Random Forest y XGBoost para estimar precio por género, plataforma y año.
+
+# Reproducibilidad {-}
+
+```{r packages, echo=TRUE}
+paquetes <- c(
+ "tidyverse",
+ "lubridate",
+ "ggrepel",
+ "scales",
+ "kableExtra",
+ "corrplot",
+ "glmnet",
+ "randomForest",
+ "xgboost",
+ "bookdown"
+)
+
+instalar <- paquetes[
+ !paquetes %in% installed.packages()[, "Package"]
+]
+
+if (length(instalar) > 0) {
+ install.packages(instalar)
+}
+```
+
+# Datos {-}
+
+Archivos CSV en `data/`:
+
+- `games.csv` — 23.152 juegos (género, plataforma, fecha)
+
+- `players.csv` — 356.600 perfiles de jugadores
+
+- `prices.csv` — 62.816 registros de precios en múltiples monedas (snapshot febrero 2025)

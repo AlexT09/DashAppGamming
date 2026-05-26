@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Análisis Exploratorio de Datos | PS Gaming Analytics 2025</title>
+  <meta name="description" content="4 Análisis Exploratorio de Datos | PS Gaming Analytics 2025" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Análisis Exploratorio de Datos | PS Gaming Analytics 2025" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Análisis Exploratorio de Datos | PS Gaming Analytics 2025" />
+  
+  
+  
+
+<meta name="author" content="Gaming Analytics Project" />
+
+
+<meta name="date" content="2026-05-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="metodologia.html"/>
+<link rel="next" href="modelos.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PS Gaming Analytics 2025</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a></li>
+<li class="chapter" data-level="" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i>Datos</a></li>
+<li class="chapter" data-level="1" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduccion.html"><a href="introduccion.html#contexto-y-relevancia"><i class="fa fa-check"></i><b>1.1</b> Contexto y relevancia</a></li>
+<li class="chapter" data-level="1.2" data-path="introduccion.html"><a href="introduccion.html#pregunta-de-investigaci%C3%B3n"><i class="fa fa-check"></i><b>1.2</b> Pregunta de investigación</a></li>
+<li class="chapter" data-level="1.3" data-path="introduccion.html"><a href="introduccion.html#objetivos"><i class="fa fa-check"></i><b>1.3</b> Objetivos</a></li>
+<li class="chapter" data-level="1.4" data-path="introduccion.html"><a href="introduccion.html#por-qu%C3%A9-solo-dos-variables-predictoras"><i class="fa fa-check"></i><b>1.4</b> Por qué solo dos variables predictoras</a></li>
+<li class="chapter" data-level="1.5" data-path="introduccion.html"><a href="introduccion.html#estructura-del-documento"><i class="fa fa-check"></i><b>1.5</b> Estructura del documento</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="marco.html"><a href="marco.html"><i class="fa fa-check"></i><b>2</b> Marco Teórico</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="marco.html"><a href="marco.html#econom%C3%ADa-del-mercado-digital-de-videojuegos"><i class="fa fa-check"></i><b>2.1</b> Economía del mercado digital de videojuegos</a></li>
+<li class="chapter" data-level="2.2" data-path="marco.html"><a href="marco.html#el-g%C3%A9nero-como-se%C3%B1al-de-calidad"><i class="fa fa-check"></i><b>2.2</b> El género como señal de calidad</a></li>
+<li class="chapter" data-level="2.3" data-path="marco.html"><a href="marco.html#estrategias-de-fijaci%C3%B3n-de-precios"><i class="fa fa-check"></i><b>2.3</b> Estrategias de fijación de precios</a></li>
+<li class="chapter" data-level="2.4" data-path="marco.html"><a href="marco.html#el-factor-indie-y-la-deflaci%C3%B3n-de-precios"><i class="fa fa-check"></i><b>2.4</b> El factor indie y la deflación de precios</a></li>
+<li class="chapter" data-level="2.5" data-path="marco.html"><a href="marco.html#hip%C3%B3tesis-de-trabajo"><i class="fa fa-check"></i><b>2.5</b> Hipótesis de trabajo</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="metodologia.html"><a href="metodologia.html"><i class="fa fa-check"></i><b>3</b> Metodología</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="metodologia.html"><a href="metodologia.html#fuente-de-datos"><i class="fa fa-check"></i><b>3.1</b> Fuente de datos</a></li>
+<li class="chapter" data-level="3.2" data-path="metodologia.html"><a href="metodologia.html#variables-del-modelo"><i class="fa fa-check"></i><b>3.2</b> Variables del modelo</a></li>
+<li class="chapter" data-level="3.3" data-path="metodologia.html"><a href="metodologia.html#proceso-etl"><i class="fa fa-check"></i><b>3.3</b> Proceso ETL</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="metodologia.html"><a href="metodologia.html#extracci%C3%B3n"><i class="fa fa-check"></i><b>3.3.1</b> Extracción</a></li>
+<li class="chapter" data-level="3.3.2" data-path="metodologia.html"><a href="metodologia.html#transformaci%C3%B3n"><i class="fa fa-check"></i><b>3.3.2</b> Transformación</a></li>
+<li class="chapter" data-level="3.3.3" data-path="metodologia.html"><a href="metodologia.html#carga-agregaci%C3%B3n-por-g%C3%A9nero"><i class="fa fa-check"></i><b>3.3.3</b> Carga — Agregación por género</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="metodologia.html"><a href="metodologia.html#herramientas"><i class="fa fa-check"></i><b>3.4</b> Herramientas</a></li>
+<li class="chapter" data-level="3.5" data-path="metodologia.html"><a href="metodologia.html#consideraciones-%C3%A9ticas-y-de-reproducibilidad"><i class="fa fa-check"></i><b>3.5</b> Consideraciones éticas y de reproducibilidad</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>4</b> Análisis Exploratorio de Datos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="eda.html"><a href="eda.html#fundamentos-del-eda"><i class="fa fa-check"></i><b>4.1</b> Fundamentos del EDA</a></li>
+<li class="chapter" data-level="4.2" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-univariado"><i class="fa fa-check"></i><b>4.2</b> Análisis univariado</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="eda.html"><a href="eda.html#distribuci%C3%B3n-por-plataforma"><i class="fa fa-check"></i><b>4.2.1</b> Distribución por plataforma</a></li>
+<li class="chapter" data-level="4.2.2" data-path="eda.html"><a href="eda.html#estad%C3%ADsticas-descriptivas-globales-de-precios"><i class="fa fa-check"></i><b>4.2.2</b> Estadísticas descriptivas globales de precios</a></li>
+<li class="chapter" data-level="4.2.3" data-path="eda.html"><a href="eda.html#histograma-de-precios"><i class="fa fa-check"></i><b>4.2.3</b> Histograma de precios</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="eda.html"><a href="eda.html#serie-de-tiempo-evoluci%C3%B3n-del-precio-20152024"><i class="fa fa-check"></i><b>4.3</b> Serie de tiempo: evolución del precio 2015–2024</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="eda.html"><a href="eda.html#precio-mediano-por-a%C3%B1o-de-lanzamiento"><i class="fa fa-check"></i><b>4.3.1</b> Precio mediano por año de lanzamiento</a></li>
+<li class="chapter" data-level="4.3.2" data-path="eda.html"><a href="eda.html#volumen-de-lanzamientos-por-a%C3%B1o"><i class="fa fa-check"></i><b>4.3.2</b> Volumen de lanzamientos por año</a></li>
+<li class="chapter" data-level="4.3.3" data-path="eda.html"><a href="eda.html#serie-de-tiempo-por-g%C3%A9nero-top-6"><i class="fa fa-check"></i><b>4.3.3</b> Serie de tiempo por género (top 6)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-bivariado-covariaci%C3%B3n-g%C3%A9nero-precio"><i class="fa fa-check"></i><b>4.4</b> Análisis bivariado: Covariación género-precio</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="eda.html"><a href="eda.html#precio-mediano-por-g%C3%A9nero-visi%C3%B3n-completa"><i class="fa fa-check"></i><b>4.4.1</b> Precio mediano por género — visión completa</a></li>
+<li class="chapter" data-level="4.4.2" data-path="eda.html"><a href="eda.html#top-8-g%C3%A9neros-m%C3%A1s-caros-vs.-m%C3%A1s-baratos"><i class="fa fa-check"></i><b>4.4.2</b> Top 8 géneros más caros vs. más baratos</a></li>
+<li class="chapter" data-level="4.4.3" data-path="eda.html"><a href="eda.html#boxplot-comparativo-por-g%C3%A9nero"><i class="fa fa-check"></i><b>4.4.3</b> Boxplot comparativo por género</a></li>
+<li class="chapter" data-level="4.4.4" data-path="eda.html"><a href="eda.html#relaci%C3%B3n-volumen-de-juegos-vs.-precio-mediano"><i class="fa fa-check"></i><b>4.4.4</b> Relación volumen de juegos vs. precio mediano</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="eda.html"><a href="eda.html#correlaci%C3%B3n-entre-monedas"><i class="fa fa-check"></i><b>4.5</b> Correlación entre monedas</a></li>
+<li class="chapter" data-level="4.6" data-path="eda.html"><a href="eda.html#s%C3%ADntesis-del-eda"><i class="fa fa-check"></i><b>4.6</b> Síntesis del EDA</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>5</b> Modelos Predictivos</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="modelos.html"><a href="modelos.html#preparaci%C3%B3n-de-datos"><i class="fa fa-check"></i><b>5.1</b> Preparación de datos</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="modelos.html"><a href="modelos.html#split-y-codificaci%C3%B3n"><i class="fa fa-check"></i><b>5.1.1</b> Split y codificación</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="modelos.html"><a href="modelos.html#modelo-1-lasso-regression"><i class="fa fa-check"></i><b>5.2</b> Modelo 1 — Lasso Regression</a></li>
+<li class="chapter" data-level="5.3" data-path="modelos.html"><a href="modelos.html#modelo-2-random-forest"><i class="fa fa-check"></i><b>5.3</b> Modelo 2 — Random Forest</a></li>
+<li class="chapter" data-level="5.4" data-path="modelos.html"><a href="modelos.html#modelo-3-xgboost"><i class="fa fa-check"></i><b>5.4</b> Modelo 3 — XGBoost</a></li>
+<li class="chapter" data-level="5.5" data-path="modelos.html"><a href="modelos.html#comparaci%C3%B3n-de-modelos"><i class="fa fa-check"></i><b>5.5</b> Comparación de modelos</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="modelos.html"><a href="modelos.html#comparaci%C3%B3n-conceptual-de-modelos"><i class="fa fa-check"></i><b>5.5.1</b> Comparación conceptual de modelos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="modelos.html"><a href="modelos.html#validaci%C3%B3n-cruzada-xgboost"><i class="fa fa-check"></i><b>5.6</b> Validación cruzada — XGBoost</a></li>
+<li class="chapter" data-level="5.7" data-path="modelos.html"><a href="modelos.html#ejemplos-de-predicci%C3%B3n"><i class="fa fa-check"></i><b>5.7</b> Ejemplos de predicción</a></li>
+<li class="chapter" data-level="5.8" data-path="modelos.html"><a href="modelos.html#limitaciones-y-mejoras-futuras"><i class="fa fa-check"></i><b>5.8</b> Limitaciones y mejoras futuras</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="resultados.html"><a href="resultados.html"><i class="fa fa-check"></i><b>6</b> Resultados y Discusión</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="resultados.html"><a href="resultados.html#verificaci%C3%B3n-de-hip%C3%B3tesis"><i class="fa fa-check"></i><b>6.1</b> Verificación de hipótesis</a></li>
+<li class="chapter" data-level="6.2" data-path="resultados.html"><a href="resultados.html#respuesta-a-las-subpreguntas"><i class="fa fa-check"></i><b>6.2</b> Respuesta a las subpreguntas</a></li>
+<li class="chapter" data-level="6.3" data-path="resultados.html"><a href="resultados.html#resultados-del-modelado-predictivo"><i class="fa fa-check"></i><b>6.3</b> Resultados del modelado predictivo</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="resultados.html"><a href="resultados.html#rendimiento-comparativo"><i class="fa fa-check"></i><b>6.3.1</b> Rendimiento comparativo</a></li>
+<li class="chapter" data-level="6.3.2" data-path="resultados.html"><a href="resultados.html#el-g%C3%A9nero-como-predictor-dominante"><i class="fa fa-check"></i><b>6.3.2</b> El género como predictor dominante</a></li>
+<li class="chapter" data-level="6.3.3" data-path="resultados.html"><a href="resultados.html#sobre-el-r%C2%B2-moderado"><i class="fa fa-check"></i><b>6.3.3</b> Sobre el R² moderado</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="resultados.html"><a href="resultados.html#hallazgos-principales"><i class="fa fa-check"></i><b>6.4</b> Hallazgos principales</a></li>
+<li class="chapter" data-level="6.5" data-path="resultados.html"><a href="resultados.html#limitaciones-del-an%C3%A1lisis"><i class="fa fa-check"></i><b>6.5</b> Limitaciones del análisis</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="conclusiones.html"><a href="conclusiones.html"><i class="fa fa-check"></i><b>7</b> Conclusiones</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="conclusiones.html"><a href="conclusiones.html#respuesta-a-la-pregunta-de-investigaci%C3%B3n"><i class="fa fa-check"></i><b>7.1</b> Respuesta a la pregunta de investigación</a></li>
+<li class="chapter" data-level="7.2" data-path="conclusiones.html"><a href="conclusiones.html#cumplimiento-de-objetivos-espec%C3%ADficos"><i class="fa fa-check"></i><b>7.2</b> Cumplimiento de objetivos específicos</a></li>
+<li class="chapter" data-level="7.3" data-path="conclusiones.html"><a href="conclusiones.html#hallazgos-diferenciadores"><i class="fa fa-check"></i><b>7.3</b> Hallazgos diferenciadores</a></li>
+<li class="chapter" data-level="7.4" data-path="conclusiones.html"><a href="conclusiones.html#implicaciones-pr%C3%A1cticas-para-desarrolladores"><i class="fa fa-check"></i><b>7.4</b> Implicaciones prácticas para desarrolladores</a></li>
+<li class="chapter" data-level="7.5" data-path="conclusiones.html"><a href="conclusiones.html#trabajo-futuro"><i class="fa fa-check"></i><b>7.5</b> Trabajo futuro</a></li>
+<li class="chapter" data-level="7.6" data-path="conclusiones.html"><a href="conclusiones.html#referencias"><i class="fa fa-check"></i><b>7.6</b> Referencias</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PS Gaming Analytics 2025</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="eda" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Análisis Exploratorio de Datos<a href="eda.html#eda" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="fundamentos-del-eda" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Fundamentos del EDA<a href="eda.html#fundamentos-del-eda" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El análisis exploratorio de datos (EDA) examina dos tipos de variación: <strong>variación individual</strong> (cómo se distribuyen los valores de una sola variable) y <strong>covariación</strong> (cómo dos variables cambian conjuntamente). En este proyecto el EDA cumple tres funciones: (1) describir la estructura de precios del catálogo, (2) analizar cómo evolucionó esa estructura entre 2015 y 2024, y (3) establecer la base empírica para los modelos del capítulo 5.</p>
+<hr />
+</div>
+<div id="análisis-univariado" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Análisis univariado<a href="eda.html#an%C3%A1lisis-univariado" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="distribución-por-plataforma" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Distribución por plataforma<a href="eda.html#distribuci%C3%B3n-por-plataforma" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="eda.html#cb14-1" tabindex="-1"></a>games <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="eda.html#cb14-2" tabindex="-1"></a>  <span class="fu">count</span>(platform, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="eda.html#cb14-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="fu">round</span>(n<span class="sc">/</span><span class="fu">sum</span>(n)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="eda.html#cb14-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(platform, n), <span class="at">y =</span> n, <span class="at">fill =</span> platform)) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="eda.html#cb14-5" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="eda.html#cb14-6" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="fu">comma</span>(n), <span class="st">&quot; (&quot;</span>, pct, <span class="st">&quot;%)&quot;</span>)), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.05</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="eda.html#cb14-7" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb14-8"><a href="eda.html#cb14-8" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.3</span>)), <span class="at">labels =</span> comma) <span class="sc">+</span></span>
+<span id="cb14-9"><a href="eda.html#cb14-9" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#001f5b&quot;</span>,<span class="st">&quot;#003087&quot;</span>,<span class="st">&quot;#0070CC&quot;</span>,<span class="st">&quot;#93C6E0&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb14-10"><a href="eda.html#cb14-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Juegos por plataforma PlayStation&quot;</span>,</span>
+<span id="cb14-11"><a href="eda.html#cb14-11" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;PS4 domina con 61% del catálogo total&quot;</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Número de juegos&quot;</span>) <span class="sc">+</span></span>
+<span id="cb14-12"><a href="eda.html#cb14-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:plataforma"></span>
+<img src="04-eda_files/figure-html/plataforma-1.png" alt="Distribución del catálogo por plataforma PlayStation" width="672" />
+<p class="caption">
+Figure 4.1: Distribución del catálogo por plataforma PlayStation
+</p>
+</div>
+<p><strong>Interpretación:</strong> PS4 concentra el 61% del catálogo (14.163 juegos), seguido por PS5 con 28% (6.422 juegos). Esta distribución refleja el ciclo de vida de las consolas: PS4 lleva más años de mercado y acumuló el grueso de los lanzamientos, especialmente del segmento indie de bajo costo. PS5, más reciente, tiene un catálogo más reducido pero con mayor proporción de títulos premium. Esta asimetría tiene implicaciones directas para el análisis de precios: si se incluyera plataforma como variable predictora, estaría capturando en gran medida el efecto del tiempo, no un efecto independiente de la consola.</p>
+</div>
+<div id="estadísticas-descriptivas-globales-de-precios" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Estadísticas descriptivas globales de precios<a href="eda.html#estad%C3%ADsticas-descriptivas-globales-de-precios" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="eda.html#cb15-1" tabindex="-1"></a>prices_clean <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="eda.html#cb15-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">N =</span> <span class="fu">comma</span>(<span class="fu">n</span>()), Mínimo <span class="ot">=</span> <span class="fu">dollar</span>(<span class="fu">min</span>(usd)),</span>
+<span id="cb15-3"><a href="eda.html#cb15-3" tabindex="-1"></a>            <span class="st">`</span><span class="at">Q1 (25%)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">dollar</span>(<span class="fu">quantile</span>(usd, <span class="fl">0.25</span>)), <span class="at">Mediana =</span> <span class="fu">dollar</span>(<span class="fu">median</span>(usd)),</span>
+<span id="cb15-4"><a href="eda.html#cb15-4" tabindex="-1"></a>            <span class="at">Media =</span> <span class="fu">dollar</span>(<span class="fu">round</span>(<span class="fu">mean</span>(usd), <span class="dv">2</span>)), <span class="st">`</span><span class="at">Q3 (75%)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">dollar</span>(<span class="fu">quantile</span>(usd, <span class="fl">0.75</span>)),</span>
+<span id="cb15-5"><a href="eda.html#cb15-5" tabindex="-1"></a>            Máximo <span class="ot">=</span> <span class="fu">dollar</span>(<span class="fu">max</span>(usd)), <span class="st">`</span><span class="at">Desv. Est.</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">dollar</span>(<span class="fu">round</span>(<span class="fu">sd</span>(usd), <span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="eda.html#cb15-6" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">&quot;Estadístico&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Valor&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-7"><a href="eda.html#cb15-7" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Estadísticas descriptivas del precio en USD&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-8"><a href="eda.html#cb15-8" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>,<span class="st">&quot;hover&quot;</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:stats-globales">Table 4.1: </span><span id="tab:stats-globales">Table 4.2: </span>Estadísticas descriptivas del precio en USD
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Estadístico
+</th>
+<th style="text-align:left;">
+Valor
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+49,251
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mínimo
+</td>
+<td style="text-align:left;">
+$0.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Q1 (25%)
+</td>
+<td style="text-align:left;">
+$2.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mediana
+</td>
+<td style="text-align:left;">
+$7.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Media
+</td>
+<td style="text-align:left;">
+$12.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Q3 (75%)
+</td>
+<td style="text-align:left;">
+$17.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Máximo
+</td>
+<td style="text-align:left;">
+$99.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Desv. Est.
+</td>
+<td style="text-align:left;">
+$11.98
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretación:</strong> La media ($12.07) supera ampliamente a la mediana ($7.99), lo que es la firma estadística de una distribución <strong>sesgada a la derecha</strong>: la mayoría de los juegos son baratos, pero una minoría de títulos premium (&gt;$40) eleva el promedio hacia arriba. El rango intercuartílico ($2.99–$19.99) delimita el “precio estándar” del mercado. La desviación estándar de ~$13 indica alta dispersión — publicar un juego sin conocer el rango de su género equivale a apuntar a un blanco con los ojos cerrados.</p>
+</div>
+<div id="histograma-de-precios" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Histograma de precios<a href="eda.html#histograma-de-precios" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="eda.html#cb16-1" tabindex="-1"></a>med_p  <span class="ot">&lt;-</span> <span class="fu">median</span>(prices_clean<span class="sc">$</span>usd)</span>
+<span id="cb16-2"><a href="eda.html#cb16-2" tabindex="-1"></a>prom_p <span class="ot">&lt;-</span> <span class="fu">mean</span>(prices_clean<span class="sc">$</span>usd)</span>
+<span id="cb16-3"><a href="eda.html#cb16-3" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="eda.html#cb16-4" tabindex="-1"></a>prices_clean <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="eda.html#cb16-5" tabindex="-1"></a>  <span class="fu">filter</span>(usd <span class="sc">&lt;=</span> <span class="dv">75</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-6"><a href="eda.html#cb16-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> usd)) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="eda.html#cb16-7" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">3</span>, <span class="at">fill =</span> <span class="st">&quot;#003087&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.85</span>) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="eda.html#cb16-8" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> med_p,  <span class="at">color =</span> <span class="st">&quot;#E63946&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,  <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-9"><a href="eda.html#cb16-9" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> prom_p, <span class="at">color =</span> <span class="st">&quot;#F4A261&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="eda.html#cb16-10" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> med_p  <span class="sc">+</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="cn">Inf</span>, <span class="at">vjust =</span> <span class="dv">2</span>,</span>
+<span id="cb16-11"><a href="eda.html#cb16-11" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;Mediana: $&quot;</span>, <span class="fu">round</span>(med_p,  <span class="dv">2</span>)), <span class="at">color =</span> <span class="st">&quot;#E63946&quot;</span>, <span class="at">size =</span> <span class="fl">3.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb16-12"><a href="eda.html#cb16-12" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> prom_p <span class="sc">+</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="cn">Inf</span>, <span class="at">vjust =</span> <span class="dv">4</span>,</span>
+<span id="cb16-13"><a href="eda.html#cb16-13" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;Media: $&quot;</span>,   <span class="fu">round</span>(prom_p, <span class="dv">2</span>)), <span class="at">color =</span> <span class="st">&quot;#F4A261&quot;</span>, <span class="at">size =</span> <span class="fl">3.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb16-14"><a href="eda.html#cb16-14" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> dollar) <span class="sc">+</span></span>
+<span id="cb16-15"><a href="eda.html#cb16-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribución de precios en USD&quot;</span>,</span>
+<span id="cb16-16"><a href="eda.html#cb16-16" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Distribución bimodal con sesgo positivo — mediana $7.99, media $12.07&quot;</span>,</span>
+<span id="cb16-17"><a href="eda.html#cb16-17" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Precio (USD)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-18"><a href="eda.html#cb16-18" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:hist-precio"></span>
+<img src="04-eda_files/figure-html/hist-precio-1.png" alt="Distribución de precios USD — catálogo PlayStation 2025" width="672" />
+<p class="caption">
+Figure 4.2: Distribución de precios USD — catálogo PlayStation 2025
+</p>
+</div>
+<p><strong>Interpretación:</strong> El histograma revela una <strong>distribución bimodal</strong>: hay un primer pico en el rango $1–5 (dominado por juegos indie de bajo costo) y un segundo pico más ancho alrededor de $15–20 (juegos estándar de mediana producción). La brecha entre mediana y media confirma que los títulos premium (+$40) son pocos pero desplazan el promedio. Para modelado predictivo, esta bimodalidad señala que un único modelo lineal tendrá dificultades: los patrones de precio son cualitativamente distintos en cada segmento. Esto anticipa por qué Random Forest y XGBoost superarán a Lasso.</p>
+<hr />
+</div>
+</div>
+<div id="serie-de-tiempo-evolución-del-precio-20152024" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Serie de tiempo: evolución del precio 2015–2024<a href="eda.html#serie-de-tiempo-evoluci%C3%B3n-del-precio-20152024" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Esta sección es central en el análisis. Se estudia cómo evolucionó la estructura de precios del mercado PlayStation entre 2015 y 2024, agrupando los juegos por su año de lanzamiento.</p>
+<p><strong>Nota metodológica:</strong> los precios provienen de un snapshot de febrero 2025. Lo que se mide es el precio <em>actual</em> de los juegos lanzados en cada año — no el precio al momento del lanzamiento. Esto captura el efecto combinado de la estrategia de precio inicial más cualquier ajuste posterior (rebajas permanentes, etc.). Es una limitación del dataset que se reconoce explícitamente.</p>
+<div id="precio-mediano-por-año-de-lanzamiento" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Precio mediano por año de lanzamiento<a href="eda.html#precio-mediano-por-a%C3%B1o-de-lanzamiento" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="eda.html#cb17-1" tabindex="-1"></a>serie_anual <span class="ot">&lt;-</span> games <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="eda.html#cb17-2" tabindex="-1"></a>  <span class="fu">inner_join</span>(prices_clean, <span class="at">by =</span> <span class="st">&quot;gameid&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="eda.html#cb17-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(year), year <span class="sc">&gt;=</span> <span class="dv">2015</span>, year <span class="sc">&lt;=</span> <span class="dv">2024</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="eda.html#cb17-4" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="eda.html#cb17-5" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb17-6"><a href="eda.html#cb17-6" tabindex="-1"></a>    <span class="at">mediana      =</span> <span class="fu">median</span>(usd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-7"><a href="eda.html#cb17-7" tabindex="-1"></a>    <span class="at">media        =</span> <span class="fu">mean</span>(usd,   <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-8"><a href="eda.html#cb17-8" tabindex="-1"></a>    <span class="at">q25          =</span> <span class="fu">quantile</span>(usd, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-9"><a href="eda.html#cb17-9" tabindex="-1"></a>    <span class="at">q75          =</span> <span class="fu">quantile</span>(usd, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-10"><a href="eda.html#cb17-10" tabindex="-1"></a>    <span class="at">n_juegos     =</span> <span class="fu">n</span>(),</span>
+<span id="cb17-11"><a href="eda.html#cb17-11" tabindex="-1"></a>    <span class="at">.groups      =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb17-12"><a href="eda.html#cb17-12" tabindex="-1"></a>  )</span>
+<span id="cb17-13"><a href="eda.html#cb17-13" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="eda.html#cb17-14" tabindex="-1"></a><span class="fu">ggplot</span>(serie_anual, <span class="fu">aes</span>(<span class="at">x =</span> year)) <span class="sc">+</span></span>
+<span id="cb17-15"><a href="eda.html#cb17-15" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> q25, <span class="at">ymax =</span> q75), <span class="at">fill =</span> <span class="st">&quot;#93C6E0&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.35</span>) <span class="sc">+</span></span>
+<span id="cb17-16"><a href="eda.html#cb17-16" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> mediana), <span class="at">color =</span> <span class="st">&quot;#001f5b&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.3</span>) <span class="sc">+</span></span>
+<span id="cb17-17"><a href="eda.html#cb17-17" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> media),   <span class="at">color =</span> <span class="st">&quot;#E63946&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.9</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-18"><a href="eda.html#cb17-18" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> mediana), <span class="at">color =</span> <span class="st">&quot;#001f5b&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb17-19"><a href="eda.html#cb17-19" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> mediana, <span class="at">label =</span> <span class="fu">dollar</span>(mediana)),</span>
+<span id="cb17-20"><a href="eda.html#cb17-20" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">size =</span> <span class="fl">3.2</span>, <span class="at">color =</span> <span class="st">&quot;#001f5b&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-21"><a href="eda.html#cb17-21" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">2015</span><span class="sc">:</span><span class="dv">2024</span>) <span class="sc">+</span></span>
+<span id="cb17-22"><a href="eda.html#cb17-22" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> dollar, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb17-23"><a href="eda.html#cb17-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Evolución del precio mediano por año de lanzamiento&quot;</span>,</span>
+<span id="cb17-24"><a href="eda.html#cb17-24" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Línea azul = mediana | Línea roja = media | Banda = rango intercuartílico (Q1–Q3)&quot;</span>,</span>
+<span id="cb17-25"><a href="eda.html#cb17-25" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Año de lanzamiento&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Precio (USD)&quot;</span>,</span>
+<span id="cb17-26"><a href="eda.html#cb17-26" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Fuente: Gaming Profiles 2025 — precios en snapshot Feb 2025&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-27"><a href="eda.html#cb17-27" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:serie-tiempo"></span>
+<img src="04-eda_files/figure-html/serie-tiempo-1.png" alt="Evolución del precio mediano por año de lanzamiento (2015–2024)" width="672" />
+<p class="caption">
+Figure 4.3: Evolución del precio mediano por año de lanzamiento (2015–2024)
+</p>
+</div>
+<p><strong>Interpretación:</strong> La serie revela una <strong>tendencia de deflación sostenida</strong>. Entre 2015 y 2017 el precio mediano se mantuvo relativamente alto (~$9–12), reflejando un catálogo con mayor proporción de títulos de mediana y alta producción. A partir de 2018–2019 inicia una caída marcada que se acelera entre 2020 y 2022, período en el que los lanzamientos anuales se triplicaron impulsados por publishers de alto volumen (eastasiasoft, Ratalaika, ThiGames). El mínimo se alcanza en 2022 (~$4–5). La leve recuperación en 2023–2024 sugiere que el mercado empieza a filtrar calidad: hay más títulos, pero los jugadores responden mejor a propuestas diferenciadas. La banda intercuartílica (Q1–Q3) se ensancha progresivamente, señalando que el mercado se está <strong>polarizando</strong>: más juegos muy baratos coexisten con más juegos muy caros.</p>
+</div>
+<div id="volumen-de-lanzamientos-por-año" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Volumen de lanzamientos por año<a href="eda.html#volumen-de-lanzamientos-por-a%C3%B1o" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="eda.html#cb18-1" tabindex="-1"></a><span class="fu">ggplot</span>(serie_anual, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n_juegos)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="eda.html#cb18-2" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#003087&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.85</span>, <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="eda.html#cb18-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">comma</span>(n_juegos)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.4</span>, <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="eda.html#cb18-4" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">2015</span><span class="sc">:</span><span class="dv">2024</span>) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="eda.html#cb18-5" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> comma, <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="eda.html#cb18-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Volumen de lanzamientos en PlayStation Store por año&quot;</span>,</span>
+<span id="cb18-7"><a href="eda.html#cb18-7" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Crecimiento explosivo desde 2020 — 5.091 juegos en 2024&quot;</span>,</span>
+<span id="cb18-8"><a href="eda.html#cb18-8" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Año&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Número de juegos lanzados&quot;</span>) <span class="sc">+</span></span>
+<span id="cb18-9"><a href="eda.html#cb18-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:volumen-anual"></span>
+<img src="04-eda_files/figure-html/volumen-anual-1.png" alt="Número de juegos lanzados por año (2015–2024)" width="672" />
+<p class="caption">
+Figure 4.4: Número de juegos lanzados por año (2015–2024)
+</p>
+</div>
+<p><strong>Interpretación:</strong> El crecimiento de lanzamientos es exponencial: de 543 títulos en 2015 a 5.091 en 2024, un incremento del <strong>838%</strong> en una década. Este gráfico es el complemento necesario de la serie de precios: la deflación observada no ocurre en el vacío, sino como consecuencia directa del aumento de oferta. Más juegos compitiendo por la atención del mismo pool de jugadores presiona los precios a la baja, especialmente en géneros masivos. Esto confirma la relevancia del <code>year</code> como variable predictora: el año captura implícitamente el nivel de competencia que enfrentó cada juego al momento de ser lanzado.</p>
+</div>
+<div id="serie-de-tiempo-por-género-top-6" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Serie de tiempo por género (top 6)<a href="eda.html#serie-de-tiempo-por-g%C3%A9nero-top-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="eda.html#cb19-1" tabindex="-1"></a>top6_generos <span class="ot">&lt;-</span> generos_validos <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="eda.html#cb19-2" tabindex="-1"></a>  <span class="fu">slice_max</span>(n, <span class="at">n =</span> <span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="eda.html#cb19-3" tabindex="-1"></a>  <span class="fu">pull</span>(genres_clean)</span>
+<span id="cb19-4"><a href="eda.html#cb19-4" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="eda.html#cb19-5" tabindex="-1"></a>genres_long <span class="sc">%&gt;%</span></span>
+<span id="cb19-6"><a href="eda.html#cb19-6" tabindex="-1"></a>  <span class="fu">filter</span>(genres_clean <span class="sc">%in%</span> top6_generos, year <span class="sc">&gt;=</span> <span class="dv">2015</span>, year <span class="sc">&lt;=</span> <span class="dv">2024</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-7"><a href="eda.html#cb19-7" tabindex="-1"></a>  <span class="fu">group_by</span>(genres_clean, year) <span class="sc">%&gt;%</span></span>
+<span id="cb19-8"><a href="eda.html#cb19-8" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mediana =</span> <span class="fu">median</span>(usd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">n =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-9"><a href="eda.html#cb19-9" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-10"><a href="eda.html#cb19-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mediana, <span class="at">color =</span> genres_clean, <span class="at">group =</span> genres_clean)) <span class="sc">+</span></span>
+<span id="cb19-11"><a href="eda.html#cb19-11" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.1</span>) <span class="sc">+</span></span>
+<span id="cb19-12"><a href="eda.html#cb19-12" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb19-13"><a href="eda.html#cb19-13" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">2015</span><span class="sc">:</span><span class="dv">2024</span>) <span class="sc">+</span></span>
+<span id="cb19-14"><a href="eda.html#cb19-14" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> dollar) <span class="sc">+</span></span>
+<span id="cb19-15"><a href="eda.html#cb19-15" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#001f5b&quot;</span>,<span class="st">&quot;#003087&quot;</span>,<span class="st">&quot;#0070CC&quot;</span>,<span class="st">&quot;#E63946&quot;</span>,<span class="st">&quot;#F4A261&quot;</span>,<span class="st">&quot;#4CAF50&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb19-16"><a href="eda.html#cb19-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Precio mediano por año de lanzamiento — top 6 géneros&quot;</span>,</span>
+<span id="cb19-17"><a href="eda.html#cb19-17" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Todos los géneros muestran tendencia deflacionaria post-2019&quot;</span>,</span>
+<span id="cb19-18"><a href="eda.html#cb19-18" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Año de lanzamiento&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Precio mediano (USD)&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Género&quot;</span>) <span class="sc">+</span></span>
+<span id="cb19-19"><a href="eda.html#cb19-19" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb19-20"><a href="eda.html#cb19-20" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:serie-genero"></span>
+<img src="04-eda_files/figure-html/serie-genero-1.png" alt="Evolución del precio mediano por año de lanzamiento para los 6 géneros más representativos" width="672" />
+<p class="caption">
+Figure 4.5: Evolución del precio mediano por año de lanzamiento para los 6 géneros más representativos
+</p>
+</div>
+<p><strong>Interpretación:</strong> Al desagregar la serie por género se observa que la deflación es un fenómeno <strong>transversal</strong>, no exclusivo de algún segmento. Sin embargo, la velocidad e intensidad difieren: géneros como <em>Action</em> y <em>Puzzle</em> experimentan la caída más pronunciada (de ~$8 en 2015 a ~$3 en 2022), mientras que <em>Role Playing</em> mantiene precios relativamente estables o incluso los incrementa ligeramente en 2023–2024. Esto confirma que el género es un factor moderador del efecto temporal: no basta con saber el año de lanzamiento, también importa el género. La interacción entre ambas variables justifica el uso de modelos no lineales (Random Forest, XGBoost) frente a Lasso.</p>
+<hr />
+</div>
+</div>
+<div id="análisis-bivariado-covariación-género-precio" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Análisis bivariado: Covariación género-precio<a href="eda.html#an%C3%A1lisis-bivariado-covariaci%C3%B3n-g%C3%A9nero-precio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="precio-mediano-por-género-visión-completa" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Precio mediano por género — visión completa<a href="eda.html#precio-mediano-por-g%C3%A9nero-visi%C3%B3n-completa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="eda.html#cb20-1" tabindex="-1"></a>generos_validos <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="eda.html#cb20-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">grupo =</span> <span class="fu">case_when</span>(</span>
+<span id="cb20-3"><a href="eda.html#cb20-3" tabindex="-1"></a>    precio_mediana <span class="sc">&gt;=</span> <span class="fl">19.99</span> <span class="sc">~</span> <span class="st">&quot;Alto (≥$20)&quot;</span>,</span>
+<span id="cb20-4"><a href="eda.html#cb20-4" tabindex="-1"></a>    precio_mediana <span class="sc">&gt;=</span>  <span class="fl">9.99</span> <span class="sc">~</span> <span class="st">&quot;Medio ($10–$19.99)&quot;</span>,</span>
+<span id="cb20-5"><a href="eda.html#cb20-5" tabindex="-1"></a>    <span class="cn">TRUE</span>                    <span class="sc">~</span> <span class="st">&quot;Bajo (&lt;$10)&quot;</span>),</span>
+<span id="cb20-6"><a href="eda.html#cb20-6" tabindex="-1"></a>    <span class="at">grupo =</span> <span class="fu">factor</span>(grupo, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Alto (≥$20)&quot;</span>,<span class="st">&quot;Medio ($10–$19.99)&quot;</span>,<span class="st">&quot;Bajo (&lt;$10)&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb20-7"><a href="eda.html#cb20-7" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(genres_clean, precio_mediana), <span class="at">y =</span> precio_mediana, <span class="at">fill =</span> grupo)) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="eda.html#cb20-8" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb20-9"><a href="eda.html#cb20-9" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">dollar</span>(precio_mediana)), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="fl">2.8</span>) <span class="sc">+</span></span>
+<span id="cb20-10"><a href="eda.html#cb20-10" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb20-11"><a href="eda.html#cb20-11" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>)), <span class="at">labels =</span> dollar) <span class="sc">+</span></span>
+<span id="cb20-12"><a href="eda.html#cb20-12" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#001f5b&quot;</span>,<span class="st">&quot;#0070CC&quot;</span>,<span class="st">&quot;#93C6E0&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb20-13"><a href="eda.html#cb20-13" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Precio mediano por género en PlayStation&quot;</span>,</span>
+<span id="cb20-14"><a href="eda.html#cb20-14" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Diferencia de hasta 40x entre el género más caro y el más barato&quot;</span>,</span>
+<span id="cb20-15"><a href="eda.html#cb20-15" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Precio mediano (USD)&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Rango de precio&quot;</span>) <span class="sc">+</span></span>
+<span id="cb20-16"><a href="eda.html#cb20-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:precio-genero-completo"></span>
+<img src="04-eda_files/figure-html/precio-genero-completo-1.png" alt="Precio mediano por género (géneros con ≥50 juegos)" width="672" />
+<p class="caption">
+Figure 4.6: Precio mediano por género (géneros con ≥50 juegos)
+</p>
+</div>
+<p><strong>Interpretación:</strong> El gráfico es quizás el más revelador del análisis: la diferencia entre el género más caro (<em>Simulation Racing</em>: $39.99) y el más barato (<em>Bowling</em>: $0.99) es de <strong>40 veces</strong>. Esto no es ruido estadístico — es la señal más fuerte del dataset. El género funciona como una señal de calidad que el mercado ha calibrado a lo largo del tiempo: géneros que prometen experiencias largas y de alta producción (Open World, Action-RPG, Role Playing) se ubican consistentemente por encima de $20, mientras que géneros de sesión corta o alta penetración indie (Puzzle, Platformer, Educational) quedan por debajo de $5. Para el modelo predictivo, esta separación es exactamente lo que el algoritmo debe aprender.</p>
+</div>
+<div id="top-8-géneros-más-caros-vs.-más-baratos" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Top 8 géneros más caros vs. más baratos<a href="eda.html#top-8-g%C3%A9neros-m%C3%A1s-caros-vs.-m%C3%A1s-baratos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="eda.html#cb21-1" tabindex="-1"></a>top_caros   <span class="ot">&lt;-</span> generos_validos <span class="sc">%&gt;%</span> <span class="fu">slice_max</span>(precio_mediana, <span class="at">n =</span> <span class="dv">8</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">tipo =</span> <span class="st">&quot;Más caros&quot;</span>)</span>
+<span id="cb21-2"><a href="eda.html#cb21-2" tabindex="-1"></a>top_baratos <span class="ot">&lt;-</span> generos_validos <span class="sc">%&gt;%</span> <span class="fu">slice_min</span>(precio_mediana, <span class="at">n =</span> <span class="dv">8</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">tipo =</span> <span class="st">&quot;Más baratos&quot;</span>)</span>
+<span id="cb21-3"><a href="eda.html#cb21-3" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="eda.html#cb21-4" tabindex="-1"></a><span class="fu">bind_rows</span>(top_caros, top_baratos) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="eda.html#cb21-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(genres_clean, precio_mediana), <span class="at">y =</span> precio_mediana, <span class="at">fill =</span> tipo)) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="eda.html#cb21-6" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb21-7"><a href="eda.html#cb21-7" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">dollar</span>(precio_mediana)), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="eda.html#cb21-8" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>tipo, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="eda.html#cb21-9" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>)), <span class="at">labels =</span> dollar) <span class="sc">+</span></span>
+<span id="cb21-10"><a href="eda.html#cb21-10" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#93C6E0&quot;</span>,<span class="st">&quot;#001f5b&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb21-11"><a href="eda.html#cb21-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Géneros con mayor y menor precio mediano&quot;</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Precio mediano (USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb21-12"><a href="eda.html#cb21-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:top-caros-baratos"></span>
+<img src="04-eda_files/figure-html/top-caros-baratos-1.png" alt="Géneros extremos por precio mediano" width="672" />
+<p class="caption">
+Figure 4.7: Géneros extremos por precio mediano
+</p>
+</div>
+<p><strong>Interpretación:</strong> Los géneros más caros comparten una lógica común: todos implican <strong>experiencias de larga duración</strong> o hardware especializado (<em>Simulation Racing</em> suele asociarse a periféricos de volante). <em>Open World</em> y <em>Action Horror</em> exigen decenas de horas para ser completados, lo que el consumidor está dispuesto a pagar. Por el contrario, los géneros más baratos (<em>Bowling</em>, <em>Pinball</em>, <em>Educational</em>) son de sesión corta, altamente replicables y con audiencias de nicho pequeñas pero sensibles al precio. Un desarrollador que publique un juego de Bowling a $19.99 enfrentará rechazo inmediato del mercado — el modelo lo capturaría como una predicción aberrante.</p>
+</div>
+<div id="boxplot-comparativo-por-género" class="section level3 hasAnchor" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Boxplot comparativo por género<a href="eda.html#boxplot-comparativo-por-g%C3%A9nero" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="eda.html#cb22-1" tabindex="-1"></a>generos_mostrar <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb22-2"><a href="eda.html#cb22-2" tabindex="-1"></a>  generos_validos <span class="sc">%&gt;%</span> <span class="fu">slice_max</span>(precio_mediana, <span class="at">n =</span> <span class="dv">12</span>),</span>
+<span id="cb22-3"><a href="eda.html#cb22-3" tabindex="-1"></a>  generos_validos <span class="sc">%&gt;%</span> <span class="fu">slice_min</span>(precio_mediana, <span class="at">n =</span> <span class="dv">5</span>)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(genres_clean)</span>
+<span id="cb22-4"><a href="eda.html#cb22-4" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="eda.html#cb22-5" tabindex="-1"></a>genres_long <span class="sc">%&gt;%</span></span>
+<span id="cb22-6"><a href="eda.html#cb22-6" tabindex="-1"></a>  <span class="fu">filter</span>(genres_clean <span class="sc">%in%</span> generos_mostrar, usd <span class="sc">&lt;=</span> <span class="dv">75</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-7"><a href="eda.html#cb22-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">genres_clean =</span> <span class="fu">factor</span>(genres_clean,</span>
+<span id="cb22-8"><a href="eda.html#cb22-8" tabindex="-1"></a>    <span class="at">levels =</span> generos_validos <span class="sc">%&gt;%</span> <span class="fu">filter</span>(genres_clean <span class="sc">%in%</span> generos_mostrar) <span class="sc">%&gt;%</span></span>
+<span id="cb22-9"><a href="eda.html#cb22-9" tabindex="-1"></a>      <span class="fu">arrange</span>(precio_mediana) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(genres_clean))) <span class="sc">%&gt;%</span></span>
+<span id="cb22-10"><a href="eda.html#cb22-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> genres_clean, <span class="at">y =</span> usd, <span class="at">fill =</span> genres_clean)) <span class="sc">+</span></span>
+<span id="cb22-11"><a href="eda.html#cb22-11" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>, <span class="at">outlier.alpha =</span> <span class="fl">0.2</span>, <span class="at">outlier.size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb22-12"><a href="eda.html#cb22-12" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> dollar) <span class="sc">+</span></span>
+<span id="cb22-13"><a href="eda.html#cb22-13" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;#93C6E0&quot;</span>,<span class="st">&quot;#001f5b&quot;</span>))(<span class="fu">length</span>(generos_mostrar))) <span class="sc">+</span></span>
+<span id="cb22-14"><a href="eda.html#cb22-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribución de precios por género&quot;</span>,</span>
+<span id="cb22-15"><a href="eda.html#cb22-15" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Caja = Q1–Q3 | Línea central = mediana | Puntos = outliers&quot;</span>,</span>
+<span id="cb22-16"><a href="eda.html#cb22-16" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Precio (USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb22-17"><a href="eda.html#cb22-17" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:boxplot-generos"></span>
+<img src="04-eda_files/figure-html/boxplot-generos-1.png" alt="Distribución de precios por género (top 12 caros + 5 baratos)" width="672" />
+<p class="caption">
+Figure 4.8: Distribución de precios por género (top 12 caros + 5 baratos)
+</p>
+</div>
+<p><strong>Interpretación:</strong> El boxplot complementa al gráfico de medianas agregando información sobre <strong>dispersión interna</strong>. Hay dos patrones distintos: (1) géneros premium como <em>Simulation Racing</em> tienen cajas compactas — los precios son consistentemente altos, hay poco debate entre publishers sobre cuánto cobrar; (2) géneros masivos como <em>Action</em> o <em>Adventure</em> tienen cajas amplias con outliers extremos — coexisten títulos indie a $0.99 y producciones AAA a $59.99 dentro del mismo género. Esta bimodalidad dentro del género es la principal fuente de error de los modelos: predecir el precio de un juego de <em>Action</em> sin saber si es indie o AAA es inherentemente impreciso. El R² moderado que se verá en el capítulo 5 es en parte consecuencia directa de esta heterogeneidad.</p>
+</div>
+<div id="relación-volumen-de-juegos-vs.-precio-mediano" class="section level3 hasAnchor" number="4.4.4">
+<h3><span class="header-section-number">4.4.4</span> Relación volumen de juegos vs. precio mediano<a href="eda.html#relaci%C3%B3n-volumen-de-juegos-vs.-precio-mediano" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="eda.html#cb23-1" tabindex="-1"></a>generos_validos <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="eda.html#cb23-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> n, <span class="at">y =</span> precio_mediana, <span class="at">label =</span> genres_clean)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="eda.html#cb23-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> precio_sd, <span class="at">color =</span> precio_mediana), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="eda.html#cb23-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;#E63946&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="eda.html#cb23-5" tabindex="-1"></a>  ggrepel<span class="sc">::</span><span class="fu">geom_text_repel</span>(<span class="at">data =</span> . <span class="sc">%&gt;%</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">|</span> precio_mediana <span class="sc">&gt;</span> <span class="dv">19</span>), <span class="at">size =</span> <span class="fl">2.8</span>, <span class="at">max.overlaps =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="eda.html#cb23-6" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> comma) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> dollar) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="eda.html#cb23-7" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low =</span> <span class="st">&quot;#93C6E0&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#001f5b&quot;</span>) <span class="sc">+</span> <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb23-8"><a href="eda.html#cb23-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Volumen de juegos vs. precio mediano por género&quot;</span>,</span>
+<span id="cb23-9"><a href="eda.html#cb23-9" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;A mayor oferta de títulos, menor precio mediano — correlación negativa significativa&quot;</span>,</span>
+<span id="cb23-10"><a href="eda.html#cb23-10" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Número de juegos (escala logarítmica)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Precio mediano (USD)&quot;</span>,</span>
+<span id="cb23-11"><a href="eda.html#cb23-11" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Precio</span><span class="sc">\n</span><span class="st">mediano&quot;</span>, <span class="at">size =</span> <span class="st">&quot;Desv.</span><span class="sc">\n</span><span class="st">estándar&quot;</span>) <span class="sc">+</span></span>
+<span id="cb23-12"><a href="eda.html#cb23-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: The following aesthetics were dropped during statistical transformation: label.
+## ℹ This can happen when ggplot fails to infer the correct grouping structure in
+##   the data.
+## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+##   variable into a factor?</code></pre>
+<div class="figure"><span style="display:block;" id="fig:volumen-precio"></span>
+<img src="04-eda_files/figure-html/volumen-precio-1.png" alt="Saturación de mercado: número de títulos vs. precio mediano por género" width="672" />
+<p class="caption">
+Figure 4.9: Saturación de mercado: número de títulos vs. precio mediano por género
+</p>
+</div>
+<p><strong>Interpretación:</strong> Este scatter plot conecta la serie de tiempo con el análisis por género: la correlación negativa entre volumen y precio (línea roja de regresión) no es casualidad, es el mecanismo de mercado en acción. Géneros con miles de títulos (<em>Action</em>, <em>Puzzle</em>, <em>Platformer</em>) tienen precios bajos porque la oferta supera a la demanda de atención: los jugadores tienen opciones infinitas y los publishers compiten por precio. Géneros con menos de 200 títulos (<em>Simulation Racing</em>, <em>Open World</em>) pueden sostener precios altos precisamente por la escasez relativa. El tamaño de cada punto representa la desviación estándar: los puntos grandes con precios altos corresponden a géneros donde la dispersión también es alta, lo que confirma la coexistencia de indie y AAA dentro del mismo género.</p>
+<hr />
+</div>
+</div>
+<div id="correlación-entre-monedas" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Correlación entre monedas<a href="eda.html#correlaci%C3%B3n-entre-monedas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="eda.html#cb26-1" tabindex="-1"></a>cor_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;../../data/prices.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="eda.html#cb26-2" tabindex="-1"></a>  <span class="fu">select</span>(usd, eur, gbp, jpy, rub) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">complete.cases</span>(.))</span>
+<span id="cb26-3"><a href="eda.html#cb26-3" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="eda.html#cb26-4" tabindex="-1"></a><span class="fu">corrplot</span>(<span class="fu">cor</span>(cor_data), <span class="at">method =</span> <span class="st">&quot;color&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>,</span>
+<span id="cb26-5"><a href="eda.html#cb26-5" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;#93C6E0&quot;</span>,<span class="st">&quot;white&quot;</span>,<span class="st">&quot;#001f5b&quot;</span>))(<span class="dv">200</span>),</span>
+<span id="cb26-6"><a href="eda.html#cb26-6" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">number.cex =</span> <span class="fl">0.85</span>, <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>,</span>
+<span id="cb26-7"><a href="eda.html#cb26-7" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Correlación entre monedas de precio&quot;</span>, <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:correlacion-monedas"></span>
+<img src="04-eda_files/figure-html/correlacion-monedas-1.png" alt="Matriz de correlación entre monedas de precio" width="672" />
+<p class="caption">
+Figure 4.10: Matriz de correlación entre monedas de precio
+</p>
+</div>
+<p><strong>Interpretación:</strong> La correlación perfecta entre USD, EUR y GBP (r = 1.00) indica que PlayStation utiliza <strong>conversión fija automática</strong> entre estas monedas — el precio en EUR y GBP es una transformación lineal exacta del precio en USD. Esto no añade información independiente para el modelo. JPY y RUB tienen correlación alta (~0.95) pero no perfecta, lo que refleja ajustes regionales de precio que PlayStation realiza periódicamente en mercados con alta sensibilidad al tipo de cambio. Para el modelado, se confirma que trabajar únicamente con USD es suficiente y no se pierde información relevante.</p>
+<hr />
+</div>
+<div id="síntesis-del-eda" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Síntesis del EDA<a href="eda.html#s%C3%ADntesis-del-eda" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="eda.html#cb27-1" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb27-2"><a href="eda.html#cb27-2" tabindex="-1"></a>  Dimensión <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Estructura de precios&quot;</span>, <span class="st">&quot;Serie de tiempo 2015–2024&quot;</span>, <span class="st">&quot;Géneros más caros&quot;</span>,</span>
+<span id="cb27-3"><a href="eda.html#cb27-3" tabindex="-1"></a>                <span class="st">&quot;Géneros más baratos&quot;</span>, <span class="st">&quot;Saturación de mercado&quot;</span>, <span class="st">&quot;Paridad entre monedas&quot;</span>),</span>
+<span id="cb27-4"><a href="eda.html#cb27-4" tabindex="-1"></a>  <span class="st">`</span><span class="at">Hallazgo principal</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb27-5"><a href="eda.html#cb27-5" tabindex="-1"></a>    <span class="st">&quot;Distribución bimodal sesgada a la derecha. Mediana $7.99, media $12.07. 86% de juegos &lt;$20.&quot;</span>,</span>
+<span id="cb27-6"><a href="eda.html#cb27-6" tabindex="-1"></a>    <span class="st">&quot;Deflación sostenida: precio mediano cae de ~$12 (2015) a ~$4 (2022), leve recuperación en 2023–24.&quot;</span>,</span>
+<span id="cb27-7"><a href="eda.html#cb27-7" tabindex="-1"></a>    <span class="st">&quot;Simulation Racing ($39.99), Open World ($24.99), Action Horror ($24.99) — experiencias largas.&quot;</span>,</span>
+<span id="cb27-8"><a href="eda.html#cb27-8" tabindex="-1"></a>    <span class="st">&quot;Bowling ($0.99), Pinball ($1.99), Educational ($2.49) — sesiones cortas, alta penetración indie.&quot;</span>,</span>
+<span id="cb27-9"><a href="eda.html#cb27-9" tabindex="-1"></a>    <span class="st">&quot;Correlación negativa: más títulos por género = precios más bajos (ley de oferta y demanda).&quot;</span>,</span>
+<span id="cb27-10"><a href="eda.html#cb27-10" tabindex="-1"></a>    <span class="st">&quot;USD/EUR/GBP correlación r=1.00; JPY/RUB con ajustes regionales (~0.95).&quot;</span>),</span>
+<span id="cb27-11"><a href="eda.html#cb27-11" tabindex="-1"></a>  <span class="st">`</span><span class="at">Relevancia para el modelo</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb27-12"><a href="eda.html#cb27-12" tabindex="-1"></a>    <span class="st">&quot;Justifica uso de mediana en lugar de media; la bimodalidad anticipa limitaciones de Lasso.&quot;</span>,</span>
+<span id="cb27-13"><a href="eda.html#cb27-13" tabindex="-1"></a>    <span class="st">&quot;Confirma que `year` captura el nivel de competencia del mercado en ese período.&quot;</span>,</span>
+<span id="cb27-14"><a href="eda.html#cb27-14" tabindex="-1"></a>    <span class="st">&quot;Estos géneros generan coeficientes positivos altos en todos los modelos.&quot;</span>,</span>
+<span id="cb27-15"><a href="eda.html#cb27-15" tabindex="-1"></a>    <span class="st">&quot;Estos géneros generan coeficientes negativos o cercanos a cero.&quot;</span>,</span>
+<span id="cb27-16"><a href="eda.html#cb27-16" tabindex="-1"></a>    <span class="st">&quot;Valida `year` como proxy de saturación de mercado.&quot;</span>,</span>
+<span id="cb27-17"><a href="eda.html#cb27-17" tabindex="-1"></a>    <span class="st">&quot;Confirma que modelar solo en USD es suficiente.&quot;</span>)</span>
+<span id="cb27-18"><a href="eda.html#cb27-18" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-19"><a href="eda.html#cb27-19" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Síntesis de hallazgos del EDA y su relevancia para el modelado&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-20"><a href="eda.html#cb27-20" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>,<span class="st">&quot;hover&quot;</span>), <span class="at">full_width =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-21"><a href="eda.html#cb27-21" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">width =</span> <span class="st">&quot;20%&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-22"><a href="eda.html#cb27-22" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">3</span>, <span class="at">italic =</span> <span class="cn">TRUE</span>, <span class="at">width =</span> <span class="st">&quot;30%&quot;</span>)</span></code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:tabla-sintesis">Table 4.3: </span><span id="tab:tabla-sintesis">Table 4.4: </span>Síntesis de hallazgos del EDA y su relevancia para el modelado
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Dimensión
+</th>
+<th style="text-align:left;">
+Hallazgo principal
+</th>
+<th style="text-align:left;">
+Relevancia para el modelo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Estructura de precios
+</td>
+<td style="text-align:left;">
+Distribución bimodal sesgada a la derecha. Mediana $7.99, media $12.07. 86% de juegos &lt;$20.
+</td>
+<td style="text-align:left;width: 30%; font-style: italic;">
+Justifica uso de mediana en lugar de media; la bimodalidad anticipa limitaciones de Lasso.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Serie de tiempo 2015–2024
+</td>
+<td style="text-align:left;">
+Deflación sostenida: precio mediano cae de ~$12 (2015) a ~$4 (2022), leve recuperación en 2023–24.
+</td>
+<td style="text-align:left;width: 30%; font-style: italic;">
+Confirma que <code>year</code> captura el nivel de competencia del mercado en ese período.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Géneros más caros
+</td>
+<td style="text-align:left;">
+Simulation Racing ($39.99), Open World ($24.99), Action Horror ($24.99) — experiencias largas.
+</td>
+<td style="text-align:left;width: 30%; font-style: italic;">
+Estos géneros generan coeficientes positivos altos en todos los modelos.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Géneros más baratos
+</td>
+<td style="text-align:left;">
+Bowling ($0.99), Pinball ($1.99), Educational ($2.49) — sesiones cortas, alta penetración indie.
+</td>
+<td style="text-align:left;width: 30%; font-style: italic;">
+Estos géneros generan coeficientes negativos o cercanos a cero.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Saturación de mercado
+</td>
+<td style="text-align:left;">
+Correlación negativa: más títulos por género = precios más bajos (ley de oferta y demanda).
+</td>
+<td style="text-align:left;width: 30%; font-style: italic;">
+Valida <code>year</code> como proxy de saturación de mercado.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Paridad entre monedas
+</td>
+<td style="text-align:left;">
+USD/EUR/GBP correlación r=1.00; JPY/RUB con ajustes regionales (~0.95).
+</td>
+<td style="text-align:left;width: 30%; font-style: italic;">
+Confirma que modelar solo en USD es suficiente.
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusión del EDA:</strong> El género es el predictor dominante del precio, con una diferencia de hasta 40x entre extremos. El año de lanzamiento captura la dinámica temporal del mercado — especialmente la deflación post-2019 causada por la explosión de lanzamientos indie. La interacción entre estas dos variables (distintos géneros se deflacionan a distinta velocidad) justifica el uso de modelos no lineales. La varianza residual no explicada se debe principalmente a la coexistencia de títulos indie y AAA dentro del mismo género, una heterogeneidad que este dataset no permite resolver sin información adicional (Metacritic, duración, ESRB).</p>
+
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="metodologia.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": null,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

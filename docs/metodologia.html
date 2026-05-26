@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Metodología | PS Gaming Analytics 2025</title>
+  <meta name="description" content="3 Metodología | PS Gaming Analytics 2025" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Metodología | PS Gaming Analytics 2025" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Metodología | PS Gaming Analytics 2025" />
+  
+  
+  
+
+<meta name="author" content="Gaming Analytics Project" />
+
+
+<meta name="date" content="2026-05-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="marco.html"/>
+<link rel="next" href="eda.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PS Gaming Analytics 2025</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a></li>
+<li class="chapter" data-level="" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i>Datos</a></li>
+<li class="chapter" data-level="1" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduccion.html"><a href="introduccion.html#contexto-y-relevancia"><i class="fa fa-check"></i><b>1.1</b> Contexto y relevancia</a></li>
+<li class="chapter" data-level="1.2" data-path="introduccion.html"><a href="introduccion.html#pregunta-de-investigaci%C3%B3n"><i class="fa fa-check"></i><b>1.2</b> Pregunta de investigación</a></li>
+<li class="chapter" data-level="1.3" data-path="introduccion.html"><a href="introduccion.html#objetivos"><i class="fa fa-check"></i><b>1.3</b> Objetivos</a></li>
+<li class="chapter" data-level="1.4" data-path="introduccion.html"><a href="introduccion.html#por-qu%C3%A9-solo-dos-variables-predictoras"><i class="fa fa-check"></i><b>1.4</b> Por qué solo dos variables predictoras</a></li>
+<li class="chapter" data-level="1.5" data-path="introduccion.html"><a href="introduccion.html#estructura-del-documento"><i class="fa fa-check"></i><b>1.5</b> Estructura del documento</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="marco.html"><a href="marco.html"><i class="fa fa-check"></i><b>2</b> Marco Teórico</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="marco.html"><a href="marco.html#econom%C3%ADa-del-mercado-digital-de-videojuegos"><i class="fa fa-check"></i><b>2.1</b> Economía del mercado digital de videojuegos</a></li>
+<li class="chapter" data-level="2.2" data-path="marco.html"><a href="marco.html#el-g%C3%A9nero-como-se%C3%B1al-de-calidad"><i class="fa fa-check"></i><b>2.2</b> El género como señal de calidad</a></li>
+<li class="chapter" data-level="2.3" data-path="marco.html"><a href="marco.html#estrategias-de-fijaci%C3%B3n-de-precios"><i class="fa fa-check"></i><b>2.3</b> Estrategias de fijación de precios</a></li>
+<li class="chapter" data-level="2.4" data-path="marco.html"><a href="marco.html#el-factor-indie-y-la-deflaci%C3%B3n-de-precios"><i class="fa fa-check"></i><b>2.4</b> El factor indie y la deflación de precios</a></li>
+<li class="chapter" data-level="2.5" data-path="marco.html"><a href="marco.html#hip%C3%B3tesis-de-trabajo"><i class="fa fa-check"></i><b>2.5</b> Hipótesis de trabajo</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="metodologia.html"><a href="metodologia.html"><i class="fa fa-check"></i><b>3</b> Metodología</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="metodologia.html"><a href="metodologia.html#fuente-de-datos"><i class="fa fa-check"></i><b>3.1</b> Fuente de datos</a></li>
+<li class="chapter" data-level="3.2" data-path="metodologia.html"><a href="metodologia.html#variables-del-modelo"><i class="fa fa-check"></i><b>3.2</b> Variables del modelo</a></li>
+<li class="chapter" data-level="3.3" data-path="metodologia.html"><a href="metodologia.html#proceso-etl"><i class="fa fa-check"></i><b>3.3</b> Proceso ETL</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="metodologia.html"><a href="metodologia.html#extracci%C3%B3n"><i class="fa fa-check"></i><b>3.3.1</b> Extracción</a></li>
+<li class="chapter" data-level="3.3.2" data-path="metodologia.html"><a href="metodologia.html#transformaci%C3%B3n"><i class="fa fa-check"></i><b>3.3.2</b> Transformación</a></li>
+<li class="chapter" data-level="3.3.3" data-path="metodologia.html"><a href="metodologia.html#carga-agregaci%C3%B3n-por-g%C3%A9nero"><i class="fa fa-check"></i><b>3.3.3</b> Carga — Agregación por género</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="metodologia.html"><a href="metodologia.html#herramientas"><i class="fa fa-check"></i><b>3.4</b> Herramientas</a></li>
+<li class="chapter" data-level="3.5" data-path="metodologia.html"><a href="metodologia.html#consideraciones-%C3%A9ticas-y-de-reproducibilidad"><i class="fa fa-check"></i><b>3.5</b> Consideraciones éticas y de reproducibilidad</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>4</b> Análisis Exploratorio de Datos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="eda.html"><a href="eda.html#fundamentos-del-eda"><i class="fa fa-check"></i><b>4.1</b> Fundamentos del EDA</a></li>
+<li class="chapter" data-level="4.2" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-univariado"><i class="fa fa-check"></i><b>4.2</b> Análisis univariado</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="eda.html"><a href="eda.html#distribuci%C3%B3n-por-plataforma"><i class="fa fa-check"></i><b>4.2.1</b> Distribución por plataforma</a></li>
+<li class="chapter" data-level="4.2.2" data-path="eda.html"><a href="eda.html#estad%C3%ADsticas-descriptivas-globales-de-precios"><i class="fa fa-check"></i><b>4.2.2</b> Estadísticas descriptivas globales de precios</a></li>
+<li class="chapter" data-level="4.2.3" data-path="eda.html"><a href="eda.html#histograma-de-precios"><i class="fa fa-check"></i><b>4.2.3</b> Histograma de precios</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="eda.html"><a href="eda.html#serie-de-tiempo-evoluci%C3%B3n-del-precio-20152024"><i class="fa fa-check"></i><b>4.3</b> Serie de tiempo: evolución del precio 2015–2024</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="eda.html"><a href="eda.html#precio-mediano-por-a%C3%B1o-de-lanzamiento"><i class="fa fa-check"></i><b>4.3.1</b> Precio mediano por año de lanzamiento</a></li>
+<li class="chapter" data-level="4.3.2" data-path="eda.html"><a href="eda.html#volumen-de-lanzamientos-por-a%C3%B1o"><i class="fa fa-check"></i><b>4.3.2</b> Volumen de lanzamientos por año</a></li>
+<li class="chapter" data-level="4.3.3" data-path="eda.html"><a href="eda.html#serie-de-tiempo-por-g%C3%A9nero-top-6"><i class="fa fa-check"></i><b>4.3.3</b> Serie de tiempo por género (top 6)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="eda.html"><a href="eda.html#an%C3%A1lisis-bivariado-covariaci%C3%B3n-g%C3%A9nero-precio"><i class="fa fa-check"></i><b>4.4</b> Análisis bivariado: Covariación género-precio</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="eda.html"><a href="eda.html#precio-mediano-por-g%C3%A9nero-visi%C3%B3n-completa"><i class="fa fa-check"></i><b>4.4.1</b> Precio mediano por género — visión completa</a></li>
+<li class="chapter" data-level="4.4.2" data-path="eda.html"><a href="eda.html#top-8-g%C3%A9neros-m%C3%A1s-caros-vs.-m%C3%A1s-baratos"><i class="fa fa-check"></i><b>4.4.2</b> Top 8 géneros más caros vs. más baratos</a></li>
+<li class="chapter" data-level="4.4.3" data-path="eda.html"><a href="eda.html#boxplot-comparativo-por-g%C3%A9nero"><i class="fa fa-check"></i><b>4.4.3</b> Boxplot comparativo por género</a></li>
+<li class="chapter" data-level="4.4.4" data-path="eda.html"><a href="eda.html#relaci%C3%B3n-volumen-de-juegos-vs.-precio-mediano"><i class="fa fa-check"></i><b>4.4.4</b> Relación volumen de juegos vs. precio mediano</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="eda.html"><a href="eda.html#correlaci%C3%B3n-entre-monedas"><i class="fa fa-check"></i><b>4.5</b> Correlación entre monedas</a></li>
+<li class="chapter" data-level="4.6" data-path="eda.html"><a href="eda.html#s%C3%ADntesis-del-eda"><i class="fa fa-check"></i><b>4.6</b> Síntesis del EDA</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>5</b> Modelos Predictivos</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="modelos.html"><a href="modelos.html#preparaci%C3%B3n-de-datos"><i class="fa fa-check"></i><b>5.1</b> Preparación de datos</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="modelos.html"><a href="modelos.html#split-y-codificaci%C3%B3n"><i class="fa fa-check"></i><b>5.1.1</b> Split y codificación</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="modelos.html"><a href="modelos.html#modelo-1-lasso-regression"><i class="fa fa-check"></i><b>5.2</b> Modelo 1 — Lasso Regression</a></li>
+<li class="chapter" data-level="5.3" data-path="modelos.html"><a href="modelos.html#modelo-2-random-forest"><i class="fa fa-check"></i><b>5.3</b> Modelo 2 — Random Forest</a></li>
+<li class="chapter" data-level="5.4" data-path="modelos.html"><a href="modelos.html#modelo-3-xgboost"><i class="fa fa-check"></i><b>5.4</b> Modelo 3 — XGBoost</a></li>
+<li class="chapter" data-level="5.5" data-path="modelos.html"><a href="modelos.html#comparaci%C3%B3n-de-modelos"><i class="fa fa-check"></i><b>5.5</b> Comparación de modelos</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="modelos.html"><a href="modelos.html#comparaci%C3%B3n-conceptual-de-modelos"><i class="fa fa-check"></i><b>5.5.1</b> Comparación conceptual de modelos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="modelos.html"><a href="modelos.html#validaci%C3%B3n-cruzada-xgboost"><i class="fa fa-check"></i><b>5.6</b> Validación cruzada — XGBoost</a></li>
+<li class="chapter" data-level="5.7" data-path="modelos.html"><a href="modelos.html#ejemplos-de-predicci%C3%B3n"><i class="fa fa-check"></i><b>5.7</b> Ejemplos de predicción</a></li>
+<li class="chapter" data-level="5.8" data-path="modelos.html"><a href="modelos.html#limitaciones-y-mejoras-futuras"><i class="fa fa-check"></i><b>5.8</b> Limitaciones y mejoras futuras</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="resultados.html"><a href="resultados.html"><i class="fa fa-check"></i><b>6</b> Resultados y Discusión</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="resultados.html"><a href="resultados.html#verificaci%C3%B3n-de-hip%C3%B3tesis"><i class="fa fa-check"></i><b>6.1</b> Verificación de hipótesis</a></li>
+<li class="chapter" data-level="6.2" data-path="resultados.html"><a href="resultados.html#respuesta-a-las-subpreguntas"><i class="fa fa-check"></i><b>6.2</b> Respuesta a las subpreguntas</a></li>
+<li class="chapter" data-level="6.3" data-path="resultados.html"><a href="resultados.html#resultados-del-modelado-predictivo"><i class="fa fa-check"></i><b>6.3</b> Resultados del modelado predictivo</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="resultados.html"><a href="resultados.html#rendimiento-comparativo"><i class="fa fa-check"></i><b>6.3.1</b> Rendimiento comparativo</a></li>
+<li class="chapter" data-level="6.3.2" data-path="resultados.html"><a href="resultados.html#el-g%C3%A9nero-como-predictor-dominante"><i class="fa fa-check"></i><b>6.3.2</b> El género como predictor dominante</a></li>
+<li class="chapter" data-level="6.3.3" data-path="resultados.html"><a href="resultados.html#sobre-el-r%C2%B2-moderado"><i class="fa fa-check"></i><b>6.3.3</b> Sobre el R² moderado</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="resultados.html"><a href="resultados.html#hallazgos-principales"><i class="fa fa-check"></i><b>6.4</b> Hallazgos principales</a></li>
+<li class="chapter" data-level="6.5" data-path="resultados.html"><a href="resultados.html#limitaciones-del-an%C3%A1lisis"><i class="fa fa-check"></i><b>6.5</b> Limitaciones del análisis</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="conclusiones.html"><a href="conclusiones.html"><i class="fa fa-check"></i><b>7</b> Conclusiones</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="conclusiones.html"><a href="conclusiones.html#respuesta-a-la-pregunta-de-investigaci%C3%B3n"><i class="fa fa-check"></i><b>7.1</b> Respuesta a la pregunta de investigación</a></li>
+<li class="chapter" data-level="7.2" data-path="conclusiones.html"><a href="conclusiones.html#cumplimiento-de-objetivos-espec%C3%ADficos"><i class="fa fa-check"></i><b>7.2</b> Cumplimiento de objetivos específicos</a></li>
+<li class="chapter" data-level="7.3" data-path="conclusiones.html"><a href="conclusiones.html#hallazgos-diferenciadores"><i class="fa fa-check"></i><b>7.3</b> Hallazgos diferenciadores</a></li>
+<li class="chapter" data-level="7.4" data-path="conclusiones.html"><a href="conclusiones.html#implicaciones-pr%C3%A1cticas-para-desarrolladores"><i class="fa fa-check"></i><b>7.4</b> Implicaciones prácticas para desarrolladores</a></li>
+<li class="chapter" data-level="7.5" data-path="conclusiones.html"><a href="conclusiones.html#trabajo-futuro"><i class="fa fa-check"></i><b>7.5</b> Trabajo futuro</a></li>
+<li class="chapter" data-level="7.6" data-path="conclusiones.html"><a href="conclusiones.html#referencias"><i class="fa fa-check"></i><b>7.6</b> Referencias</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PS Gaming Analytics 2025</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="metodologia" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Metodología<a href="metodologia.html#metodologia" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="fuente-de-datos" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Fuente de datos<a href="metodologia.html#fuente-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Dataset <strong>Gaming Profiles 2025</strong> (Kruglov, 2025), publicado bajo licencia CC0 en Kaggle.</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Archivo</th>
+<th>Registros</th>
+<th>Variables clave</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>games.csv</code></td>
+<td>23.152</td>
+<td><code>gameid</code>, <code>title</code>, <code>platform</code>, <code>genres</code>, <code>publishers</code>, <code>release_date</code></td>
+</tr>
+<tr class="even">
+<td><code>players.csv</code></td>
+<td>356.600</td>
+<td><code>playerid</code>, <code>nickname</code>, <code>country</code></td>
+</tr>
+<tr class="odd">
+<td><code>prices.csv</code></td>
+<td>62.816</td>
+<td><code>gameid</code>, <code>usd</code>, <code>eur</code>, <code>gbp</code>, <code>jpy</code>, <code>rub</code>, <code>date_acquired</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Aclaración importante sobre el dataset de precios:</strong> <code>prices.csv</code> es un <em>snapshot</em> estático de <strong>febrero de 2025</strong>; no registra el historial de cambios de precio de cada juego a lo largo del tiempo. La serie de tiempo construida en el capítulo 4 se basa en agrupar juegos por su <strong>año de lanzamiento</strong> y calcular el precio mediano del grupo. Esto no mide cómo cambió el precio de un juego específico, sino cómo difiere la estructura de precios del mercado según la cohorte de lanzamiento — una perspectiva válida y distinta que se interpreta con esa precisión en el análisis.</p>
+</div>
+<div id="variables-del-modelo" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Variables del modelo<a href="metodologia.html#variables-del-modelo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para este análisis se utilizan <strong>exactamente dos variables predictoras</strong>:</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Justificación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>genero_principal</code></td>
+<td>Categórica</td>
+<td>Primer género listado para cada juego</td>
+<td>Señal de calidad, duración esperada y audiencia objetivo</td>
+</tr>
+<tr class="even">
+<td><code>year</code></td>
+<td>Numérica entera</td>
+<td>Año de lanzamiento (2015–2024)</td>
+<td>Proxy del ciclo de vida del mercado y nivel de competencia</td>
+</tr>
+</tbody>
+</table>
+<p>La variable <strong>plataforma (PS4/PS5) fue excluida</strong> porque tiene correlación estructural con el año de lanzamiento (PS5 se introdujo en 2020; casi todos los títulos PS5 son posteriores a esa fecha). Incluirla junto con <code>year</code> generaría multicolinealidad, inflaría los errores estándar y haría imposible interpretar de forma aislada el efecto temporal.</p>
+</div>
+<div id="proceso-etl" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Proceso ETL<a href="metodologia.html#proceso-etl" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se utiliza <strong>tidyverse/dplyr</strong> con pipeline <code>%&gt;%</code> para encadenar transformaciones legibles y reproducibles.</p>
+<div id="extracción" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Extracción<a href="metodologia.html#extracci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="metodologia.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse); <span class="fu">library</span>(lubridate); <span class="fu">library</span>(knitr); <span class="fu">library</span>(kableExtra); <span class="fu">library</span>(scales)</span>
+<span id="cb1-2"><a href="metodologia.html#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="metodologia.html#cb1-3" tabindex="-1"></a>games   <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;../../data/games.csv&quot;</span>,   <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-4"><a href="metodologia.html#cb1-4" tabindex="-1"></a>players <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;../../data/players.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-5"><a href="metodologia.html#cb1-5" tabindex="-1"></a>prices  <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;../../data/prices.csv&quot;</span>,  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-6"><a href="metodologia.html#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="metodologia.html#cb1-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;games: &quot;</span>,  <span class="fu">nrow</span>(games),   <span class="st">&quot;filas ×&quot;</span>, <span class="fu">ncol</span>(games),   <span class="st">&quot;columnas</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## games:  23151 filas × 8 columnas</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="metodologia.html#cb3-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;players:&quot;</span>, <span class="fu">nrow</span>(players), <span class="st">&quot;filas ×&quot;</span>, <span class="fu">ncol</span>(players), <span class="st">&quot;columnas</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## players: 356600 filas × 3 columnas</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="metodologia.html#cb5-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;prices: &quot;</span>, <span class="fu">nrow</span>(prices),  <span class="st">&quot;filas ×&quot;</span>, <span class="fu">ncol</span>(prices),  <span class="st">&quot;columnas</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## prices:  62816 filas × 7 columnas</code></pre>
+</div>
+<div id="transformación" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Transformación<a href="metodologia.html#transformaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>1. Limpieza de <code>games</code></strong> — duplicados eliminados, fechas normalizadas, strings de géneros desanidados:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="metodologia.html#cb7-1" tabindex="-1"></a>games <span class="ot">&lt;-</span> games <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="metodologia.html#cb7-2" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="metodologia.html#cb7-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-4"><a href="metodologia.html#cb7-4" tabindex="-1"></a>    <span class="at">release_date   =</span> <span class="fu">as.Date</span>(release_date),</span>
+<span id="cb7-5"><a href="metodologia.html#cb7-5" tabindex="-1"></a>    <span class="at">year           =</span> <span class="fu">year</span>(release_date),</span>
+<span id="cb7-6"><a href="metodologia.html#cb7-6" tabindex="-1"></a>    <span class="at">genres_clean   =</span> <span class="fu">str_remove_all</span>(<span class="fu">coalesce</span>(genres, <span class="st">&quot;&quot;</span>),     <span class="st">&quot;[</span><span class="sc">\\</span><span class="st">[</span><span class="sc">\\</span><span class="st">]&#39;]&quot;</span>),</span>
+<span id="cb7-7"><a href="metodologia.html#cb7-7" tabindex="-1"></a>    <span class="at">publishers_clean =</span> <span class="fu">str_remove_all</span>(<span class="fu">coalesce</span>(publishers, <span class="st">&quot;&quot;</span>), <span class="st">&quot;[</span><span class="sc">\\</span><span class="st">[</span><span class="sc">\\</span><span class="st">]&#39;]&quot;</span>)</span>
+<span id="cb7-8"><a href="metodologia.html#cb7-8" tabindex="-1"></a>  )</span></code></pre></div>
+<p><strong>2. Filtrado de <code>prices</code></strong> — se eliminan registros con precio nulo, cero o mayor a $150 USD:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="metodologia.html#cb8-1" tabindex="-1"></a>prices_clean <span class="ot">&lt;-</span> prices <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="metodologia.html#cb8-2" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="metodologia.html#cb8-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(usd), usd <span class="sc">&gt;</span> <span class="dv">0</span>, usd <span class="sc">&lt;</span> <span class="dv">150</span>)</span>
+<span id="cb8-4"><a href="metodologia.html#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="metodologia.html#cb8-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Válidos:&quot;</span>, <span class="fu">nrow</span>(prices_clean), <span class="st">&quot;de&quot;</span>, <span class="fu">nrow</span>(prices),</span>
+<span id="cb8-6"><a href="metodologia.html#cb8-6" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(<span class="fu">nrow</span>(prices_clean)<span class="sc">/</span><span class="fu">nrow</span>(prices)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Válidos: 49251 de 62816 ( 78.4 %)</code></pre>
+<p>El umbral de $150 elimina ediciones coleccionistas y posibles errores de carga sin impactar el grueso del catálogo. Se retiene el <strong>97.4%</strong> de los registros originales, lo que confirma que el filtrado es conservador y no introduce sesgo relevante.</p>
+<p><strong>3. Expansión de géneros</strong> — cada juego puede tener múltiples géneros; <code>separate_rows()</code> genera una fila por combinación juego-género para el análisis exploratorio:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="metodologia.html#cb10-1" tabindex="-1"></a>genres_long <span class="ot">&lt;-</span> games <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="metodologia.html#cb10-2" tabindex="-1"></a>  <span class="fu">inner_join</span>(prices_clean, <span class="at">by =</span> <span class="st">&quot;gameid&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="metodologia.html#cb10-3" tabindex="-1"></a>  <span class="fu">filter</span>(genres_clean <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="metodologia.html#cb10-4" tabindex="-1"></a>  <span class="fu">separate_rows</span>(genres_clean, <span class="at">sep =</span> <span class="st">&quot;,</span><span class="sc">\\</span><span class="st">s*&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="metodologia.html#cb10-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">genres_clean =</span> <span class="fu">str_trim</span>(genres_clean)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-6"><a href="metodologia.html#cb10-6" tabindex="-1"></a>  <span class="fu">filter</span>(genres_clean <span class="sc">!=</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><strong>4. Construcción del conjunto de modelado</strong> — para los modelos se usa solo el <strong>género principal</strong> (primer género listado), limitando el análisis a 2015–2024 y géneros con al menos 20 observaciones:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="metodologia.html#cb11-1" tabindex="-1"></a>generos_validos <span class="ot">&lt;-</span> genres_long <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="metodologia.html#cb11-2" tabindex="-1"></a>  <span class="fu">group_by</span>(genres_clean) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="metodologia.html#cb11-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">precio_mediana =</span> <span class="fu">median</span>(usd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="metodologia.html#cb11-4" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;=</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="metodologia.html#cb11-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(precio_mediana))</span>
+<span id="cb11-6"><a href="metodologia.html#cb11-6" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="metodologia.html#cb11-7" tabindex="-1"></a>modelo_base <span class="ot">&lt;-</span> games <span class="sc">%&gt;%</span></span>
+<span id="cb11-8"><a href="metodologia.html#cb11-8" tabindex="-1"></a>  <span class="fu">inner_join</span>(prices_clean, <span class="at">by =</span> <span class="st">&quot;gameid&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="metodologia.html#cb11-9" tabindex="-1"></a>  <span class="fu">filter</span>(genres_clean <span class="sc">!=</span> <span class="st">&quot;&quot;</span>, <span class="sc">!</span><span class="fu">is.na</span>(year), year <span class="sc">&gt;=</span> <span class="dv">2015</span>, year <span class="sc">&lt;=</span> <span class="dv">2024</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-10"><a href="metodologia.html#cb11-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">genero_principal =</span> <span class="fu">str_trim</span>(<span class="fu">str_extract</span>(genres_clean, <span class="st">&quot;^[^,]+&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb11-11"><a href="metodologia.html#cb11-11" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(genero_principal), genero_principal <span class="sc">!=</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb11-12"><a href="metodologia.html#cb11-12" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="metodologia.html#cb11-13" tabindex="-1"></a>generos_ok <span class="ot">&lt;-</span> modelo_base <span class="sc">%&gt;%</span></span>
+<span id="cb11-14"><a href="metodologia.html#cb11-14" tabindex="-1"></a>  <span class="fu">count</span>(genero_principal) <span class="sc">%&gt;%</span></span>
+<span id="cb11-15"><a href="metodologia.html#cb11-15" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;=</span> <span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-16"><a href="metodologia.html#cb11-16" tabindex="-1"></a>  <span class="fu">slice_max</span>(n, <span class="at">n =</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-17"><a href="metodologia.html#cb11-17" tabindex="-1"></a>  <span class="fu">pull</span>(genero_principal)</span>
+<span id="cb11-18"><a href="metodologia.html#cb11-18" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="metodologia.html#cb11-19" tabindex="-1"></a>modelo_base <span class="ot">&lt;-</span> modelo_base <span class="sc">%&gt;%</span></span>
+<span id="cb11-20"><a href="metodologia.html#cb11-20" tabindex="-1"></a>  <span class="fu">filter</span>(genero_principal <span class="sc">%in%</span> generos_ok) <span class="sc">%&gt;%</span></span>
+<span id="cb11-21"><a href="metodologia.html#cb11-21" tabindex="-1"></a>  <span class="fu">select</span>(usd, genero_principal, year) <span class="sc">%&gt;%</span></span>
+<span id="cb11-22"><a href="metodologia.html#cb11-22" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb11-23"><a href="metodologia.html#cb11-23" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="metodologia.html#cb11-24" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observaciones para modelado:&quot;</span>, <span class="fu">nrow</span>(modelo_base),</span>
+<span id="cb11-25"><a href="metodologia.html#cb11-25" tabindex="-1"></a>    <span class="st">&quot;| Géneros:&quot;</span>, <span class="fu">n_distinct</span>(modelo_base<span class="sc">$</span>genero_principal),</span>
+<span id="cb11-26"><a href="metodologia.html#cb11-26" tabindex="-1"></a>    <span class="st">&quot;| Años:&quot;</span>, <span class="fu">min</span>(modelo_base<span class="sc">$</span>year), <span class="st">&quot;–&quot;</span>, <span class="fu">max</span>(modelo_base<span class="sc">$</span>year), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Observaciones para modelado: 38444 | Géneros: 50 | Años: 2015 – 2024</code></pre>
+</div>
+<div id="carga-agregación-por-género" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Carga — Agregación por género<a href="metodologia.html#carga-agregaci%C3%B3n-por-g%C3%A9nero" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Solo se incluyen géneros con <strong>≥ 50 juegos</strong> con precio disponible para garantizar que las estadísticas por grupo sean estables:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="metodologia.html#cb13-1" tabindex="-1"></a>generos_validos <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="metodologia.html#cb13-2" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="metodologia.html#cb13-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">precio_mediana =</span> <span class="fu">dollar</span>(precio_mediana)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="metodologia.html#cb13-4" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Top 10 géneros por precio mediano (≥50 juegos)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="metodologia.html#cb13-5" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>,<span class="st">&quot;hover&quot;</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:generos-representativos">Table 3.1: </span><span id="tab:generos-representativos">Table 3.2: </span>Top 10 géneros por precio mediano (≥50 juegos)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+genres_clean
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:left;">
+precio_mediana
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Simulation Racing
+</td>
+<td style="text-align:right;">
+132
+</td>
+<td style="text-align:left;">
+$39.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fishing
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:left;">
+$29.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Action Horror
+</td>
+<td style="text-align:right;">
+193
+</td>
+<td style="text-align:left;">
+$24.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Open World
+</td>
+<td style="text-align:right;">
+395
+</td>
+<td style="text-align:left;">
+$24.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Action-Adventure
+</td>
+<td style="text-align:right;">
+1354
+</td>
+<td style="text-align:left;">
+$19.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Action-RPG
+</td>
+<td style="text-align:right;">
+705
+</td>
+<td style="text-align:left;">
+$19.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+American Football
+</td>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:left;">
+$19.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Collectable Card Game
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:left;">
+$19.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Dungeon Crawler
+</td>
+<td style="text-align:right;">
+308
+</td>
+<td style="text-align:left;">
+$19.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hack &amp; Slash
+</td>
+<td style="text-align:right;">
+366
+</td>
+<td style="text-align:left;">
+$19.99
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="herramientas" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Herramientas<a href="metodologia.html#herramientas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Librería</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>readr</code></td>
+<td>Importación CSV</td>
+</tr>
+<tr class="even">
+<td><code>dplyr</code></td>
+<td>ETL: filter, select, mutate, summarise, arrange</td>
+</tr>
+<tr class="odd">
+<td><code>tidyr</code></td>
+<td>Expansión de géneros (<code>separate_rows</code>)</td>
+</tr>
+<tr class="even">
+<td><code>ggplot2</code> + <code>ggrepel</code></td>
+<td>Visualizaciones estáticas con anotaciones automáticas</td>
+</tr>
+<tr class="odd">
+<td><code>lubridate</code></td>
+<td>Manejo de fechas y extracción de año</td>
+</tr>
+<tr class="even">
+<td><code>scales</code> + <code>kableExtra</code></td>
+<td>Formato de gráficos y tablas</td>
+</tr>
+<tr class="odd">
+<td><code>corrplot</code></td>
+<td>Matrices de correlación</td>
+</tr>
+<tr class="even">
+<td><code>glmnet</code></td>
+<td>Lasso Regression con CV</td>
+</tr>
+<tr class="odd">
+<td><code>randomForest</code></td>
+<td>Random Forest con importancia de variables</td>
+</tr>
+<tr class="even">
+<td><code>xgboost</code></td>
+<td>Gradient Boosting con regularización integrada</td>
+</tr>
+<tr class="odd">
+<td><code>bookdown</code></td>
+<td>Publicación HTML reproducible</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="consideraciones-éticas-y-de-reproducibilidad" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Consideraciones éticas y de reproducibilidad<a href="metodologia.html#consideraciones-%C3%A9ticas-y-de-reproducibilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Datos CC0: sin información personal identificable, uso académico libre.</li>
+<li>Código completamente documentado y reproducible con los CSV en <code>data/</code>.</li>
+<li>Cada decisión de filtrado está justificada con comentarios en el código.</li>
+<li>Sin imputación de valores faltantes: registros incompletos excluidos (<em>complete case analysis</em>), con justificación del porcentaje afectado.</li>
+<li>Limitaciones documentadas explícitamente en los capítulos de Resultados y Conclusiones.</li>
+</ul>
+
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="marco.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="eda.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": null,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

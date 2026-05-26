@@ -1,0 +1,61 @@
+# Conclusiones {#conclusiones}
+
+## Respuesta a la pregunta de investigación
+
+**¿Es posible predecir el precio de un videojuego en PlayStation Store a partir de su género y año de lanzamiento?**
+
+**Sí, con poder predictivo moderado y errores interpretables.** El modelo Random Forest con solo dos variables (género y año de lanzamiento) logra un R² de 0.3244 y un MAE de $6.66 — es decir, puede anticipar el precio de un juego con un margen de error de menos de $7 en la mayoría de los casos. Dado que el 86% del catálogo está por debajo de $20, un error de $6.66 representa un ~33% de error relativo en el precio mediano, lo que es aceptable para una herramienta de referencia pero insuficiente para decisiones críticas de negocio.
+
+## Cumplimiento de objetivos específicos
+
+| Objetivo | Resultado |
+|---|---|
+| **OE1** — Distribución de precios | Distribución bimodal con sesgo positivo. Media $12.07, mediana $7.99. 86% de juegos por debajo de $20. |
+| **OE2** — Serie de tiempo 2015–2024 | Deflación sostenida: precio mediano de ~$12 (2015) a ~$4 (2022), leve recuperación en 2023–24. Volumen de lanzamientos creció 838%. |
+| **OE3** — Comparar medianas por género | Más caros: Simulation Racing ($39.99), Open World ($24.99). Más baratos: Bowling ($0.99), Pinball ($1.99). Diferencia de 40x. |
+| **OE4** — Modelos con 2 variables | Random Forest es el mejor modelo (R²=0.3244, RMSE=$9.85, MAE=$6.66) usando solo género y año. CV de 5 pliegues confirma estabilidad. |
+| **OE5** — Aporte relativo de variables | Género es el predictor dominante (mayor Gain/%IncMSE). Año tiene efecto independiente y confirma la tendencia deflacionaria. |
+
+## Hallazgos diferenciadores
+
+**1. La deflación del mercado PlayStation es cuantificable y tiene causa identificable.**
+El precio mediano cayó ~67% entre 2015 y 2022. La causa es estructural: el volumen de lanzamientos creció 838% en el mismo período. El año de lanzamiento captura este efecto como variable predictora.
+
+**2. El género es una señal de precio más fuerte que cualquier otra variable disponible.**
+La diferencia entre el género más caro y el más barato es de 40 veces. Los modelos no lineales (RF, XGBoost) capturan además que distintos géneros se deflacionan a ritmos distintos — una interacción que Lasso no puede modelar.
+
+**3. El R² moderado es un hallazgo, no una limitación oculta.**
+Con dos variables, un R² de 0.32 es honesto: el 68% de la varianza de precio proviene de factores no disponibles en este dataset (calidad del juego, presupuesto de marketing, reputación del estudio). Declarar esto explícitamente es parte del rigor metodológico.
+
+## Implicaciones prácticas para desarrolladores
+
+| Situación | Recomendación basada en el modelo |
+|---|---|
+| Juego de *Action* o *Puzzle* lanzado en 2024 | Precio de referencia: $2.99–$7.99. Superar ese rango requiere propuesta de valor clara frente a la oferta indie. |
+| Juego de *Role Playing* u *Open World* | Espacio para $19.99–$39.99 si la duración y calidad lo justifican. El mercado acepta ese precio en esos géneros. |
+| Comparar con benchmark de mercado | Usar Random Forest como herramienta de referencia (margen ±MAE ≈ ±$6.66). Tomar el resultado como piso de mercado, no como precio óptimo. |
+
+## Trabajo futuro
+
+1. **Optimización de hiperparámetros** de XGBoost con `tidymodels::tune_grid()` — con la configuración actual RF supera a XGBoost, pero con afinación XGBoost podría igualarlo o superarlo.
+2. **Incorporar variables de calidad:** Metacritic score, número de trofeos, ESRB/PEGI. La hipótesis es que estas variables explicarían una fracción importante del 68% de varianza no capturada.
+3. **Análisis longitudinal real:** si se obtiene un historial de precios (no un snapshot), sería posible modelar la dinámica de descuentos por género y temporada — una pregunta de mayor valor práctico para publishers.
+4. **Segmentación indie vs. AAA:** construir modelos separados para cada segmento mejoraría la precisión en los extremos del catálogo, donde el modelo actual tiene mayor error.
+5. **Comparativa multi-plataforma:** determinar si los patrones de precio por género son específicos de PlayStation o se replican en Steam y Xbox.
+
+---
+
+## Referencias
+
+- Arlot, S., & Celisse, A. (2010). A survey of cross-validation procedures. *Statistics Surveys*, 4, 40–79.
+- Breiman, L. (2001). Random forests. *Machine Learning*, 45(1), 5–32.
+- Chen, T., & Guestrin, C. (2016). XGBoost. *Proc. 22nd ACM SIGKDD*, 785–794.
+- Friedman, J., Hastie, T., & Tibshirani, R. (2010). Regularization paths via coordinate descent. *JSS*, 33(1), 1–22.
+- Kruglov, A. (2025). *Gaming Profiles 2025*. Kaggle. https://www.kaggle.com/datasets/artyomkruglov/gaming-profiles-2025-steam-playstation-xbox
+- Newzoo. (2023). *Global Games Market Report 2023*.
+- R Core Team. (2024). *R: A language and environment for statistical computing*.
+- Shapiro, C., & Varian, H. R. (1999). *Information rules*. Harvard Business School Press.
+- Wickham, H., et al. (2019). Welcome to the tidyverse. *JOSS*, 4(43), 1686.
+- Wickham, H. (2016). *ggplot2: Elegant graphics for data analysis*. Springer-Verlag.
+
+<!--chapter:end:07-conclusiones.Rmd-->

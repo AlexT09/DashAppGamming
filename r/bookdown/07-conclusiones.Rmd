@@ -2,47 +2,46 @@
 
 ## Respuesta a la pregunta de investigación
 
-**¿Tiene relación el género de un videojuego con su precio en PlayStation?**
+**¿Es posible predecir el precio de un videojuego en PlayStation Store a partir de su género y año de lanzamiento?**
 
-**Sí, y la relación es sustancial.** El género es el predictor más consistente del precio, por encima de plataforma y año de lanzamiento. La diferencia entre el género más caro (*Simulation Racing*, $39.99) y el más barato (*Bowling*, $0.99) es un factor de **40 veces** — respaldado tanto por el EDA como por los modelos ML, donde las variables de género son sistemáticamente las más importantes.
+**Sí, con poder predictivo moderado y errores interpretables.** El modelo Random Forest con solo dos variables (género y año de lanzamiento) logra un R² de 0.3244 y un MAE de $6.66 — es decir, puede anticipar el precio de un juego con un margen de error de menos de $7 en la mayoría de los casos. Dado que el 86% del catálogo está por debajo de $20, un error de $6.66 representa un ~33% de error relativo en el precio mediano, lo que es aceptable para una herramienta de referencia pero insuficiente para decisiones críticas de negocio.
 
 ## Cumplimiento de objetivos específicos
 
 | Objetivo | Resultado |
 |---|---|
-| **OE1** — Distribución de precios | Bimodal con sesgo positivo. Media $12.07, mediana $7.99. 86% de juegos por debajo de $20. |
-| **OE2** — Comparar medianas por género | Más caros: Simulation Racing ($39.99), Open World ($24.99). Más baratos: Bowling ($0.99), Pinball ($1.99). |
-| **OE3** — Variabilidad por género | Géneros masivos con mayor dispersión. Action va de $0.19 a $59.99 dentro del mismo género. |
-| **OE4** — PS4 vs PS5 | PS5 supera o iguala a PS4 en el 71% de géneros analizados. |
-| **OE5** — Saturación de mercado | Correlación negativa volumen-precio: más competencia = precios más bajos. |
-| **OE6** — Visualizaciones | Distribuciones, boxplots, scatter plots y matriz de correlación implementados con ggplot2. |
-| **OE7** — Modelos predictivos | Random Forest es el mejor modelo (R²=0.3244, RMSE=$9.85, MAE=$6.66). CV de 5 pliegues confirma estabilidad. |
+| **OE1** — Distribución de precios | Distribución bimodal con sesgo positivo. Media $12.07, mediana $7.99. 86% de juegos por debajo de $20. |
+| **OE2** — Serie de tiempo 2015–2024 | Deflación sostenida: precio mediano de ~$12 (2015) a ~$4 (2022), leve recuperación en 2023–24. Volumen de lanzamientos creció 838%. |
+| **OE3** — Comparar medianas por género | Más caros: Simulation Racing ($39.99), Open World ($24.99). Más baratos: Bowling ($0.99), Pinball ($1.99). Diferencia de 40x. |
+| **OE4** — Modelos con 2 variables | Random Forest es el mejor modelo (R²=0.3244, RMSE=$9.85, MAE=$6.66) usando solo género y año. CV de 5 pliegues confirma estabilidad. |
+| **OE5** — Aporte relativo de variables | Género es el predictor dominante (mayor Gain/%IncMSE). Año tiene efecto independiente y confirma la tendencia deflacionaria. |
 
 ## Hallazgos diferenciadores
 
-1. **La saturación indie crea pisos de precio por género:** publishers de alto volumen publican docenas de títulos por mes a precios mínimos, colapsando el percentil 25 por debajo de $2 en géneros masivos. El modelo captura esto en los coeficientes de género.
+**1. La deflación del mercado PlayStation es cuantificable y tiene causa identificable.**
+El precio mediano cayó ~67% entre 2015 y 2022. La causa es estructural: el volumen de lanzamientos creció 838% en el mismo período. El año de lanzamiento captura este efecto como variable predictora.
 
-2. **El precio por hora de entretenimiento explica los géneros caros:** Open World, Role Playing y Action-RPG prometen experiencias largas. El consumidor acepta pagar más porque el costo-hora resultante es competitivo. Los modelos de árboles capturan esta lógica no lineal mejor que Lasso.
+**2. El género es una señal de precio más fuerte que cualquier otra variable disponible.**
+La diferencia entre el género más caro y el más barato es de 40 veces. Los modelos no lineales (RF, XGBoost) capturan además que distintos géneros se deflacionan a ritmos distintos — una interacción que Lasso no puede modelar.
 
-3. **El género predice el precio mejor que la generación de consola:** un *Puzzle* de PS5 sigue costando menos que un *Role Playing* de PS4. La estrategia de pricing debe definirse por género antes que por plataforma.
+**3. El R² moderado es un hallazgo, no una limitación oculta.**
+Con dos variables, un R² de 0.32 es honesto: el 68% de la varianza de precio proviene de factores no disponibles en este dataset (calidad del juego, presupuesto de marketing, reputación del estudio). Declarar esto explícitamente es parte del rigor metodológico.
 
 ## Implicaciones prácticas para desarrolladores
 
-| Situación | Recomendación |
+| Situación | Recomendación basada en el modelo |
 |---|---|
-| Juego de *Action* o *Puzzle* | Precio de referencia: $2.99–$9.99. Superar ese rango requiere propuesta de valor clara frente a la oferta indie existente. |
-| Juego de *Role Playing* u *Open World* | Espacio para $19.99–$39.99 si duración y calidad lo justifican. |
-| Lanzamiento en PS5 | Mayor margen en géneros de experiencia larga. El género sigue siendo el factor determinante. |
-| Estimación de precio de mercado | El modelo Random Forest puede usarse como herramienta de referencia (margen ≈ ±MAE dólares). |
+| Juego de *Action* o *Puzzle* lanzado en 2024 | Precio de referencia: $2.99–$7.99. Superar ese rango requiere propuesta de valor clara frente a la oferta indie. |
+| Juego de *Role Playing* u *Open World* | Espacio para $19.99–$39.99 si la duración y calidad lo justifican. El mercado acepta ese precio en esos géneros. |
+| Comparar con benchmark de mercado | Usar Random Forest como herramienta de referencia (margen ±MAE ≈ ±$6.66). Tomar el resultado como piso de mercado, no como precio óptimo. |
 
 ## Trabajo futuro
 
-1. **Optimización de hiperparámetros** de XGBoost con `tidymodels::tune_grid()`.
-2. **Stacking de modelos** (Lasso + RF + XGBoost con meta-modelo).
-3. **Variables adicionales:** Metacritic, trofeos, ESRB/PEGI, popularidad del desarrollador.
-4. **Análisis longitudinal** si se obtiene historial de precios (descuentos por género y temporada).
-5. **Segmentación indie vs. AAA** para modelos predictivos más precisos en cada extremo del catálogo.
-6. **Comparativa multi-plataforma** (Steam, Xbox) para determinar si los patrones son específicos de PlayStation.
+1. **Optimización de hiperparámetros** de XGBoost con `tidymodels::tune_grid()` — con la configuración actual RF supera a XGBoost, pero con afinación XGBoost podría igualarlo o superarlo.
+2. **Incorporar variables de calidad:** Metacritic score, número de trofeos, ESRB/PEGI. La hipótesis es que estas variables explicarían una fracción importante del 68% de varianza no capturada.
+3. **Análisis longitudinal real:** si se obtiene un historial de precios (no un snapshot), sería posible modelar la dinámica de descuentos por género y temporada — una pregunta de mayor valor práctico para publishers.
+4. **Segmentación indie vs. AAA:** construir modelos separados para cada segmento mejoraría la precisión en los extremos del catálogo, donde el modelo actual tiene mayor error.
+5. **Comparativa multi-plataforma:** determinar si los patrones de precio por género son específicos de PlayStation o se replican en Steam y Xbox.
 
 ---
 

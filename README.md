@@ -33,7 +33,7 @@ Cada gráfico tiene debajo una **interpretación** que se recalcula con los filt
 ## Estructura
 
 ```text
-ps-gaming-analytics-2025/
+DashAppGamming/
 ├── etl/
 │   ├── etl_playstation.py   # ETL de las 6 tablas crudas (lee history.csv por partes)
 │   └── build_summary.py     # cifras clave que usan los textos (summary.csv)

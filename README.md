@@ -1,8 +1,21 @@
 # PS Gaming Analytics 2025 · Dashboard en Dash
 
-Dashboard interactivo en **Python (Dash + Plotly)** sobre el catálogo, los precios, los jugadores, la popularidad y los trofeos de **PlayStation Store**, con el dataset público [Gaming Profiles 2025](https://www.kaggle.com/datasets/artyomkruglov/gaming-profiles-2025-steam-playstation-xbox) (Kaggle, CC0).
+Dashboard interactivo en **Python (Dash + Plotly)** sobre el catálogo, los precios, los jugadores, la popularidad y los trofeos de **PlayStation Store**.
 
 La misma aplicación existe en **R / Shiny**, junto con el informe en bookdown, en el repositorio [ShinyAppGamming](https://github.com/AlexT09/ShinyAppGamming). Las dos versiones leen los mismos datos procesados, tienen las mismas páginas y muestran las mismas cifras.
+
+## Dataset
+
+[Gaming Profiles 2025](https://www.kaggle.com/datasets/artyomkruglov/gaming-profiles-2025-steam-playstation-xbox) (Kruglov, Kaggle, licencia CC0): datos reales de Steam, PlayStation y Xbox (~60 GB en total). Este proyecto usa las 6 tablas del esquema **PlayStation**:
+
+| Tabla | Contenido |
+|---|---|
+| `games` | Ficha de cada juego: título, plataforma, géneros, publisher y fecha |
+| `prices` | Precio en USD, EUR, GBP, JPY y RUB, capturado cada 2 días desde el 22-02-2025 |
+| `players` | 356 mil jugadores y su país |
+| `purchased_games` | Biblioteca de juegos comprados por cada jugador |
+| `achievements` | Trofeos de cada juego y su rareza |
+| `history` | Trofeos ganados por cada jugador entre 2008 y 2024 (46 mil jugadores) |
 
 ## Pregunta de investigación
 
@@ -20,7 +33,7 @@ La misma aplicación existe en **R / Shiny**, junto con el informe en bookdown, 
 | 8 | Dificultad de los juegos según sus trofeos | Logros |
 | 9 | Cambios de precio entre capturas de febrero de 2025 | Precios |
 
-Cada gráfico tiene debajo una **interpretación** que se recalcula con los filtros globales (plataforma, género y año).
+El dashboard tiene además las páginas Resumen, Introducción, Objetivos, ETL, Explorador y Conclusiones. Cada gráfico tiene debajo una **interpretación** que se recalcula con los filtros globales (plataforma, género y año).
 
 ## Hallazgos principales
 
@@ -30,27 +43,9 @@ Cada gráfico tiene debajo una **interpretación** que se recalcula con los filt
 - La popularidad casi no depende del precio (Spearman 0.02): *Grand Theft Auto V* está en el 66% de las bibliotecas.
 - El Platinum lo consigue en mediana solo el **19.5%** de los jugadores de un juego.
 
-## Estructura
+## Ejecutar el dashboard
 
-```text
-DashAppGamming/
-├── etl/
-│   ├── etl_playstation.py   # ETL de las 6 tablas crudas (lee history.csv por partes)
-│   └── build_summary.py     # cifras clave que usan los textos (summary.csv)
-├── data/processed/          # 13 tablas limpias (~10 MB) que lee el dashboard
-├── dash_app/
-│   ├── app.py               # menú lateral, filtros globales y rutas
-│   ├── data.py              # carga de data/processed/
-│   ├── components.py        # colores, estilo de gráficos y bloques de interfaz
-│   ├── pages/               # una página por sección (catalogo.py, precios.py, ...)
-│   └── assets/ps-theme.css  # tema compartido con la app Shiny
-├── Dockerfile, docker-compose.yml
-├── requirements.txt
-├── Contexto.md              # descripción original del dataset en Kaggle
-└── INSTRUCCIONES.md         # cómo ejecutar todo paso a paso
-```
-
-## Ejecución rápida
+Requiere Python 3.10 o superior.
 
 ```bash
 python -m venv .venv
@@ -59,7 +54,35 @@ pip install -r requirements.txt
 python dash_app/app.py            # http://127.0.0.1:8050
 ```
 
-Los datos procesados ya vienen en el repositorio. El ETL solo hace falta para regenerarlos; ver [INSTRUCCIONES.md](INSTRUCCIONES.md).
+Con Docker: `docker compose up --build` y abrir http://localhost:8050.
+
+## Regenerar los datos (ETL)
+
+Los datos procesados ya vienen en `data/processed/`. El ETL solo hace falta si cambias el código o descargas otra versión del dataset:
+
+1. Descarga el dataset de Kaggle y descomprímelo dentro del repo (por ejemplo en `archive (19)/`) o en `data/raw/`. Esas carpetas están en `.gitignore`.
+2. Ejecuta `python etl/etl_playstation.py` (o `--raw "ruta/a/playstation"`). Tarda unos 3 minutos y usa menos de 1 GB de RAM porque lee `history.csv` (800 MB) por partes.
+3. Si solo cambias los textos de resumen, basta con `python etl/build_summary.py`.
+
+Si regeneras los datos, cópialos también a `data/processed/` del repo de Shiny.
+
+## Estructura
+
+```text
+DashAppGamming/
+├── etl/
+│   ├── etl_playstation.py   # ETL de las 6 tablas crudas
+│   └── build_summary.py     # cifras clave que usan los textos (summary.csv)
+├── data/processed/          # 13 tablas limpias (~8 MB) que lee el dashboard
+├── dash_app/
+│   ├── app.py               # menú lateral, filtros globales y rutas
+│   ├── data.py              # carga de data/processed/
+│   ├── components.py        # colores, estilo de gráficos y bloques de interfaz
+│   ├── pages/               # una página por sección (catalogo.py, precios.py, ...)
+│   └── assets/ps-theme.css  # tema compartido con la app Shiny
+├── Dockerfile, docker-compose.yml
+└── requirements.txt
+```
 
 ## Autor
 

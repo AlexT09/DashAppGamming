@@ -1,5 +1,6 @@
 # Datos crudos de Kaggle (3,8 GB): no se suben. Se descargan y se pasan por el ETL.
 archive*/
+dataset/
 data/raw/
 *.zip
 

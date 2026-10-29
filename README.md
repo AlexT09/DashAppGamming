@@ -60,7 +60,7 @@ Con Docker: `docker compose up --build` y abrir http://localhost:8050.
 
 Los datos procesados ya vienen en `data/processed/`. El ETL solo hace falta si cambias el código o descargas otra versión del dataset:
 
-1. Descarga el dataset de Kaggle y descomprímelo dentro del repo (por ejemplo en `archive (19)/`) o en `data/raw/`. Esas carpetas están en `.gitignore`.
+1. Descarga el dataset de Kaggle y descomprímelo en la carpeta `dataset/` del repo (debe quedar `dataset/playstation/`) o en `data/raw/`. Esas carpetas están en `.gitignore`.
 2. Ejecuta `python etl/etl_playstation.py` (o `--raw "ruta/a/playstation"`). Tarda unos 3 minutos y usa menos de 1 GB de RAM porque lee `history.csv` (800 MB) por partes.
 3. Si solo cambias los textos de resumen, basta con `python etl/build_summary.py`.
 

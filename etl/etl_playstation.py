@@ -33,7 +33,7 @@ OUT = ROOT / "data" / "processed"
 
 RAW_CANDIDATES = [
     ROOT / "data" / "raw" / "playstation",
-    ROOT / "archive (19)" / "playstation",
+    ROOT / "dataset" / "playstation",
     ROOT / "archive" / "playstation",
 ]
 

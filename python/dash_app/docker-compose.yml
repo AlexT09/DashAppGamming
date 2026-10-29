@@ -1,8 +1,0 @@
-# Ejemplo de despliegue local (mismo enfoque que el proyecto de referencia DS4A)
-services:
- dash:
- build: .
- ports:
- - "8050:8050"
- volumes:
- - ./data:/app/data:ro

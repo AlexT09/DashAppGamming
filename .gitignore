@@ -1,38 +1,21 @@
+# Datos crudos de Kaggle (3,8 GB): no se suben. Se descargan y se pasan por el ETL.
+archive*/
+data/raw/
+*.zip
+
 # Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
+*.py[cod]
+.venv/
 venv/
 env/
-.venv/
-*.egg-info/
-dist/
-build/
-.eggs/
-
-# R
-.Rhistory
-.RData
-.Rproj.user/
-*.rds
-rsconnect/
-r/bookdown/docs/
-
-# Jupyter
 .ipynb_checkpoints/
 
-# OS
+# Sistema / editores
 .DS_Store
 Thumbs.db
 desktop.ini
-
-# IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-
-# Logs
 *.log
+etl/etl_log.txt

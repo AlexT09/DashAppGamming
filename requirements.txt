@@ -1,0 +1,9 @@
+# Dashboard (Python 3.10+)
+dash==4.4.1
+plotly==7.1.0
+pandas==2.3.3
+numpy==2.2.6
+gunicorn==26.2.0
+
+# Solo para el ETL (código ISO-3 de los países)
+pycountry==26.2.16

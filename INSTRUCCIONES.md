@@ -1,149 +1,68 @@
-# Instrucciones de Ejecución — PS Gaming Analytics 2025
+# Instrucciones de ejecución
 
-Guía paso a paso para ejecutar cada componente del proyecto.
+## Requisitos
 
----
-
-## Requisitos Previos
-
-| Software | Versión mínima |
-|----------|---------------|
-| Python | 3.10+ |
-| R | 4.2+ |
+| Software | Versión |
+|---|---|
+| Python | 3.10 o superior |
 | Git | cualquiera |
+| Docker (opcional) | cualquiera |
 
----
-
-## 1⃣ Dashboard Python (Dash)
-
-### Opción A: Ejecución Local
+## 1. Dashboard (Dash)
 
 ```bash
-cd python/dash_app
-python3 -m venv venv
-source venv/bin/activate # Windows: venv\Scripts\activate
+python -m venv .venv
+.venv\Scripts\activate            # Windows  (macOS/Linux: source .venv/bin/activate)
 pip install -r requirements.txt
-python app.py
-# Abrir: http://127.0.0.1:8050
+python dash_app/app.py
 ```
 
-### Opción B: Con Docker
+Abrir **http://127.0.0.1:8050**.
+
+| Ruta | Página |
+|---|---|
+| `/` | Resumen (KPIs e insights) |
+| `/introduccion` | Contexto, pregunta de investigación y tablas del dataset |
+| `/objetivos` | Objetivo general y los 9 objetivos específicos |
+| `/etl` | Pasos del ETL, registro de calidad y valores faltantes |
+| `/catalogo` | Objetivos 1 y 4 |
+| `/precios` | Objetivos 2, 3 y 9 |
+| `/jugadores` | Objetivos 5 y 7 |
+| `/popularidad` | Objetivo 6 |
+| `/logros` | Objetivo 8 |
+| `/explorador` | Tabla filtrable del catálogo limpio |
+| `/conclusiones` | Hallazgos y limitaciones |
+
+## 2. Con Docker
 
 ```bash
-cd python/dash_app
 docker compose up --build
-# Abrir: http://localhost:8050
 ```
 
-### Rutas disponibles
+Abrir **http://localhost:8050**. La imagen usa `gunicorn` y solo copia `dash_app/` y `data/processed/`.
 
-| URL | Sección |
-|-----|---------|
-| `http://127.0.0.1:8050/` | Resumen |
-| `http://127.0.0.1:8050/introduccion` | Introducción |
-| `http://127.0.0.1:8050/objetivos` | Objetivos |
-| `http://127.0.0.1:8050/metodologia` | Metodología |
-| `http://127.0.0.1:8050/eda` | EDA Completo |
-| `http://127.0.0.1:8050/simulador` | Simulador |
-| `http://127.0.0.1:8050/modelos` | Métricas Modelos |
-| `http://127.0.0.1:8050/prediccion` | Predictor XGBoost |
-| `http://127.0.0.1:8050/explorador` | Explorador |
+## 3. Regenerar los datos (ETL)
 
----
+Solo hace falta si cambias el ETL o descargas una versión nueva del dataset.
 
-## 2⃣ Jupyter Notebook (Python)
+1. Descarga el dataset de [Kaggle](https://www.kaggle.com/datasets/artyomkruglov/gaming-profiles-2025-steam-playstation-xbox) (~1 GB comprimido, 3,8 GB descomprimido).
+2. Descomprímelo dentro del repositorio (por ejemplo en `archive (19)/`) o en `data/raw/`. Esas carpetas están en `.gitignore`, así que no se suben.
+3. Ejecuta:
 
 ```bash
-cd python
-pip install pandas numpy matplotlib scikit-learn xgboost jupyter
-jupyter notebook notebook_ps_gaming.ipynb
+python etl/etl_playstation.py                          # busca la carpeta playstation/ sola
+python etl/etl_playstation.py --raw "ruta/a/playstation"   # o indícala
 ```
 
-También puedes abrirlo en Google Colab:
-1. Ir a [colab.research.google.com](https://colab.research.google.com)
-2. Subir `notebook_ps_gaming.ipynb` y los 3 CSV de `data/`
-3. Ejecutar todo
+Tarda unos 3 minutos y usa menos de 1 GB de RAM. Al final escribe las 13 tablas en `data/processed/` y `summary.csv` con las cifras clave. Si solo cambias los textos de resumen, basta con `python etl/build_summary.py`.
 
----
+## 4. Versión en R (Shiny + bookdown)
 
-## 3⃣ Dashboard Shiny (R)
+Está en el repositorio [ShinyAppGamming](https://github.com/AlexT09/ShinyAppGamming), con sus propias instrucciones. Usa los mismos archivos de `data/processed/`; si regeneras los datos aquí, cópialos también allá.
 
-### Desde RStudio
+## Checklist
 
-```r
-setwd("r/shiny_app")
-
-install.packages(c(
- "shiny", "shinydashboard", "tidyverse", "plotly",
- "DT", "scales", "lubridate", "caret", "randomForest", "xgboost"
-))
-
-shiny::runApp()
-# Abre en navegador puerto 3838
-```
-
-### Desde línea de comandos
-
-```bash
-R -e "shiny::runApp('r/shiny_app')"
-```
-
-### Pestañas disponibles
-
-| Pestaña | Descripción |
-|---------|-------------|
-| Introducción | Contexto y pregunta de investigación |
-| Objetivos | Metas del análisis |
-| Metodología | Flujo ETL |
-| Resumen | KPIs generales |
-| Catálogo | Géneros, publishers, tabla completa |
-| Jugadores | Distribución geográfica |
-| Precios | Histogramas, monedas, correlaciones |
-| Simulador | Benchmarks descriptivos |
-| Calidad | % valores faltantes |
-| Explorador | Tabla interactiva |
-| Modelos ML | Métricas Lasso / RF / XGBoost |
-| Predictor | Predicción con mejor modelo |
-
----
-
-## 4⃣ Reporte Bookdown (R Markdown)
-
-### Desde RStudio
-
-```r
-setwd("r/bookdown")
-
-install.packages(c("bookdown", "tidyverse", "knitr", "kableExtra",
- "corrplot", "ggrepel", "glmnet", "randomForest", "xgboost"))
-
-bookdown::render_book("index.Rmd", "bookdown::gitbook")
-# Resultado: r/bookdown/docs/index.html
-```
-
-### Publicar en GitHub Pages
-
-```bash
-git add r/bookdown/docs
-git commit -m "actualizar libro"
-git push
-# En GitHub: Settings → Pages → Branch: main → Folder: /docs
-```
-
----
-
-## Checklist de Ejecución
-
-- [ ] Python >= 3.10 instalado
-- [ ] R >= 4.2 instalado
-- [ ] Dash ejecutándose en puerto 8050
-- [ ] Shiny ejecutándose en puerto 3838
-- [ ] Bookdown compilado en `r/bookdown/docs/index.html`
-- [ ] Notebook ejecutado sin errores
-- [ ] Los 3 componentes cargan datos sin errores
-
----
-
-**Última actualización:** Mayo 2025 
-**Curso:** Visualización de Datos 
-**Grupo:** 13
+- [ ] `pip install -r requirements.txt` sin errores
+- [ ] `python dash_app/app.py` abre en el puerto 8050
+- [ ] Las 11 páginas cargan y los filtros cambian gráficos e interpretaciones
+- [ ] (Opcional) `python etl/etl_playstation.py` termina con "Listo"

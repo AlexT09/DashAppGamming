@@ -1,412 +1,66 @@
-# PS Gaming Analytics 2025
+# PS Gaming Analytics 2025 · Dashboard en Dash
 
-<div align="center">
+Dashboard interactivo en **Python (Dash + Plotly)** sobre el catálogo, los precios, los jugadores, la popularidad y los trofeos de **PlayStation Store**, con el dataset público [Gaming Profiles 2025](https://www.kaggle.com/datasets/artyomkruglov/gaming-profiles-2025-steam-playstation-xbox) (Kaggle, CC0).
 
-## Advanced Data Science & Machine Learning Project for PlayStation Store Analytics
+La misma aplicación existe en **R / Shiny**, junto con el informe en bookdown, en el repositorio [ShinyAppGamming](https://github.com/AlexT09/ShinyAppGamming). Las dos versiones leen los mismos datos procesados, tienen las mismas páginas y muestran las mismas cifras.
 
-End-to-end analytics ecosystem developed with **Python, R, Machine Learning, Dash, Shiny and Bookdown** using real-world gaming market data.
+## Pregunta de investigación
 
-<br>
+> ¿Qué patrones de catálogo, precio, audiencia, popularidad y dificultad caracterizan a PlayStation Store según los datos de Gaming Profiles 2025?
 
-<img src="https://img.shields.io/badge/Python-Data%20Science-blue?style=for-the-badge&logo=python">
-<img src="https://img.shields.io/badge/R-Analytics-276DC3?style=for-the-badge&logo=r">
-<img src="https://img.shields.io/badge/Machine%20Learning-XGBoost-orange?style=for-the-badge">
-<img src="https://img.shields.io/badge/Dash-Interactive%20Dashboard-119DFF?style=for-the-badge">
-<img src="https://img.shields.io/badge/Shiny-R%20Dashboard-75AADB?style=for-the-badge">
-<img src="https://img.shields.io/badge/Bookdown-Technical%20Report-darkgreen?style=for-the-badge">
+| # | Objetivo | Página del dashboard |
+|---|---|---|
+| 1 | Composición del catálogo por plataforma, género y publisher | Catálogo |
+| 2 | Distribución de precios por género y plataforma | Precios |
+| 3 | Comparación de precios entre USD, EUR, GBP, JPY y RUB | Precios |
+| 4 | Crecimiento del catálogo por año y género | Catálogo |
+| 5 | Distribución geográfica de los jugadores | Jugadores |
+| 6 | Juegos más comprados y su relación con el precio | Popularidad |
+| 7 | Actividad de los jugadores en el tiempo (2008–2024) | Jugadores |
+| 8 | Dificultad de los juegos según sus trofeos | Logros |
+| 9 | Cambios de precio entre capturas de febrero de 2025 | Precios |
 
-<br><br>
+Cada gráfico tiene debajo una **interpretación** que se recalcula con los filtros globales (plataforma, género y año).
 
-### 23,151 Games · 356,600 Players · 62,816 Price Records
+## Hallazgos principales
 
-</div>
+- El catálogo tiene **23,151 productos** (11,153 títulos únicos); PS4 concentra el 61.2% y los lanzamientos crecieron un 838% entre 2015 y 2024.
+- El precio mediano es **$7.99** y el 62.1% de los juegos cuesta menos de $10.
+- El mismo juego cuesta en mediana un **5% más en euros** y un **19% menos en rublos** que en dólares.
+- La popularidad casi no depende del precio (Spearman 0.02): *Grand Theft Auto V* está en el 66% de las bibliotecas.
+- El Platinum lo consigue en mediana solo el **19.5%** de los jugadores de un juego.
 
----
-
-# Overview
-
-This project analyzes the PlayStation Store ecosystem using real gaming market data obtained from Kaggle.
-
-The objective is to study how variables such as:
-
-- genre,
-- platform,
-- release year,
-- market saturation,
-- and game category
-
-affect video game pricing behavior.
-
-The project integrates:
-
-- Exploratory Data Analysis (EDA)
-- Statistical Analysis
-- Machine Learning
-- Interactive Dashboards
-- Predictive Modeling
-- Data Visualization
-- Technical Reporting
-
-
-# Tech Stack
-
-## Data Science & Machine Learning
-
-- Python
-- R
-- Pandas
-- NumPy
-- Scikit-learn
-- XGBoost
-- Random Forest
-- glmnet
-- caret
-
-## Visualization & Analytics
-
-- Plotly
-- ggplot2
-- Dash
-- Shiny
-- Bookdown
-
-## Infrastructure
-
-- Docker
-- Git
-- GitHub
-- Jupyter Notebook
-
----
-
-# Project Architecture
+## Estructura
 
 ```text
 ps-gaming-analytics-2025/
-
- data/ # Fuente principal de datos
- games.csv # 23,151 juegos PlayStation
- players.csv # 356,600 perfiles de jugadores
- prices.csv # 62,816 registros de precios
-
- python/
- 
- notebooks/
- notebook_ps_gaming.ipynb
- # Entrenamiento y evaluación de modelos ML
- 
- dash_app/
- app.py # Aplicación principal Dash
- data.py # Pipeline de carga y transformación
- requirements.txt
- Dockerfile
- docker-compose.yml
- README.md
- 
- tabs/
- tab_introduccion.py
- tab_objetivos.py
- tab_metodologia.py
- tab_modelos.py
- tab_prediccion.py
-
- r/
- 
- bookdown/
- index.Rmd
- 01-introduccion.Rmd
- 02-marco.Rmd
- 03-metodologia.Rmd
- 04-eda.Rmd
- 05-modelos.Rmd
- 06-resultados.Rmd
- 07-conclusiones.Rmd
- style.css
- _bookdown.yml
- _output.yml
- 
- shiny_app/
- app.R
- models.R
- README.md
-
- .gitignore
- INSTRUCCIONES.md
- README.md
+├── etl/
+│   ├── etl_playstation.py   # ETL de las 6 tablas crudas (lee history.csv por partes)
+│   └── build_summary.py     # cifras clave que usan los textos (summary.csv)
+├── data/processed/          # 13 tablas limpias (~10 MB) que lee el dashboard
+├── dash_app/
+│   ├── app.py               # menú lateral, filtros globales y rutas
+│   ├── data.py              # carga de data/processed/
+│   ├── components.py        # colores, estilo de gráficos y bloques de interfaz
+│   ├── pages/               # una página por sección (catalogo.py, precios.py, ...)
+│   └── assets/ps-theme.css  # tema compartido con la app Shiny
+├── Dockerfile, docker-compose.yml
+├── requirements.txt
+├── Contexto.md              # descripción original del dataset en Kaggle
+└── INSTRUCCIONES.md         # cómo ejecutar todo paso a paso
 ```
 
----
-
-# Dataset
-
-Dataset used:
-
- https://www.kaggle.com/datasets/artyomkruglov/gaming-profiles-2025-steam-playstation-xbox
-
-## Dataset Characteristics
-
-| Dataset | Records | Description |
-|---|---:|---|
-| `games.csv` | 23,151 | Video game metadata |
-| `players.csv` | 356,600 | Player profiles |
-| `prices.csv` | 62,816 | Multi-currency pricing records |
-
-## Features
-
-- Real-world gaming market data
-- Multi-platform ecosystem
-- Multi-currency pricing
-- Genre metadata
-- Release dates
-- Publisher information
-- Market behavior patterns
-
----
-
-# Quick Start
-
----
-
-# 1⃣ Clone Repository
+## Ejecución rápida
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ps-gaming-analytics-2025.git
-
-cd ps-gaming-analytics-2025
-```
-
----
-
-# 2⃣ Python Dash App
-
-Interactive analytics dashboard built with Dash + Plotly.
-
-## Installation
-
-```bash
-cd python/dash_app
-
+python -m venv .venv
+.venv\Scripts\activate            # Windows  (macOS/Linux: source .venv/bin/activate)
 pip install -r requirements.txt
+python dash_app/app.py            # http://127.0.0.1:8050
 ```
 
-## Run
+Los datos procesados ya vienen en el repositorio. El ETL solo hace falta para regenerarlos; ver [INSTRUCCIONES.md](INSTRUCCIONES.md).
 
-```bash
-python app.py
-```
+## Autor
 
-Open:
-
-```text
-http://127.0.0.1:8050
-```
-
----
-
-# 3⃣ R Shiny Dashboard
-
-## Install Dependencies
-
-```r
-install.packages(c(
- "shiny",
- "shinydashboard",
- "tidyverse",
- "plotly",
- "DT",
- "caret",
- "randomForest",
- "xgboost"
-))
-```
-
-## Run App
-
-```r
-setwd("r/shiny_app")
-
-shiny::runApp()
-```
-
-Open:
-
-```text
-http://127.0.0.1:3838
-```
-
----
-
-# 4⃣ Bookdown Technical Report
-
-## Install Dependencies
-
-```r
-install.packages(c(
- "bookdown",
- "tidyverse",
- "ggplot2",
- "corrplot",
- "glmnet",
- "randomForest",
- "xgboost"
-))
-```
-
-## Compile Report
-
-```r
-setwd("r/bookdown")
-
-bookdown::render_book(
- "index.Rmd",
- "bookdown::gitbook"
-)
-```
-
-Output:
-
-```text
-r/bookdown/_book/index.html
-```
-
----
-
-# 5⃣ Jupyter Notebook
-
-```bash
-cd python/notebooks
-
-jupyter notebook notebook_ps_gaming.ipynb
-```
-
----
-
-# Machine Learning Models
-
-The project evaluates multiple supervised learning models for video game price prediction.
-
-| Model | R² | RMSE | MAE |
-|---|---:|---:|---:|
-| Lasso Regression | 0.3547 | 15.23 | 8.92 |
-| Random Forest | 0.4892 | 11.34 | 6.21 |
-| **XGBoost** | **0.5234** | **10.78** | **5.89** |
-
-## Prediction Variables
-
-- Genre
-- Platform
-- Release Year
-
-## Best Performing Model
-
-**XGBoost** achieved the best predictive performance with the lowest error metrics and highest explanatory power.
-
----
-
-# Exploratory Data Analysis
-
-Main findings include:
-
- Strong relationship between genre and pricing 
- Premium genres maintain higher median prices 
- Market saturation negatively correlates with price 
- PS5 titles exhibit higher pricing behavior 
- Multi-currency prices show near-perfect correlation 
-
----
-
-# Docker Support
-
-Run the Dash application using Docker.
-
-## Build Container
-
-```bash
-cd python/dash_app
-
-docker build -t ps-gaming-dash .
-```
-
-## Run Container
-
-```bash
-docker run -p 8050:8050 ps-gaming-dash
-```
-
----
-
-# Technical Report
-
-The Bookdown report includes:
-
-- methodology,
-- exploratory analysis,
-- statistical interpretation,
-- machine learning evaluation,
-- model comparison,
-- conclusions,
-- and future work.
-
----
-
-# Why This Project Matters
-
-This repository demonstrates practical skills in:
-
-- data engineering,
-- machine learning,
-- analytical storytelling,
-- dashboard development,
-- statistical modeling,
-- and reproducible research.
-
-The project simulates a professional gaming analytics workflow commonly found in:
-
-- gaming companies,
-- product analytics teams,
-- business intelligence environments,
-- and market research organizations.
-
----
-
-# Recommended GitHub Images
-
-Create an `images/` folder in the project root.
-
-Suggested screenshots:
-
-| Image | Filename |
-|---|---|
-| Dash Dashboard | `dash-dashboard.png` |
-| Bookdown Report | `bookdown-preview.png` |
-| EDA Charts | `eda-analysis.png` |
-| ML Results | `model-results.png` |
-| Shiny Dashboard | `shiny-dashboard.png` |
-
----
-
-# ‍ Author
-
-**Alex Teran**
-
-Academic and analytical project developed using real-world gaming data.
-
----
-
-# License
-
-This project uses data distributed under:
-
-**CC0 Public Domain License**
-
-Dataset author:
-
-**Artyom Kruglov — Kaggle**
-
----
-
-<div align="center">
-
-## If you found this project interesting, consider starring the repository.
-
-</div>
+**Alex Terán** · Curso de Visualización de Datos.

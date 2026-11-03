@@ -2,8 +2,6 @@
 
 Dashboard interactivo en **Python (Dash + Plotly)** sobre el catálogo, los precios, los jugadores, la popularidad y los trofeos de **PlayStation Store**.
 
-La misma aplicación existe en **R / Shiny**, junto con el informe en bookdown, en el repositorio [ShinyAppGamming](https://github.com/AlexT09/ShinyAppGamming). Las dos versiones leen los mismos datos procesados, tienen las mismas páginas y muestran las mismas cifras.
-
 ## Dataset
 
 [Gaming Profiles 2025](https://www.kaggle.com/datasets/artyomkruglov/gaming-profiles-2025-steam-playstation-xbox) (Kruglov, Kaggle, licencia CC0): datos reales de Steam, PlayStation y Xbox (~60 GB en total). Este proyecto usa las 6 tablas del esquema **PlayStation**:

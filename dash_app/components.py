@@ -32,6 +32,7 @@ def style(fig: go.Figure, height: int = 340, legend: bool = True) -> go.Figure:
                     bgcolor="rgba(0,0,0,0)", font=dict(color=MUTED), title_text=""),
         hoverlabel=dict(bgcolor=CARD, bordercolor=BORDER, font=dict(color=TEXT)),
         coloraxis_colorbar=dict(tickfont=dict(color=MUTED), title=dict(font=dict(color=MUTED))),
+        transition=dict(duration=500, easing="cubic-in-out"),  # barras y puntos se mueven al cambiar filtros
     )
     fig.update_xaxes(gridcolor=BORDER, linecolor=BORDER, zerolinecolor=BORDER, title_font=dict(color=MUTED))
     fig.update_yaxes(gridcolor=BORDER, linecolor=BORDER, zerolinecolor=BORDER, title_font=dict(color=MUTED))

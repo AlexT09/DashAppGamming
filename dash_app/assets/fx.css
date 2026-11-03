@@ -1,0 +1,77 @@
+/* fx.css — Animaciones y micro-interacciones del dashboard Dash.
+   Va aparte de ps-theme.css (compartido con Shiny) para no tocar la otra app.
+   Todo depende de la clase .fx que pone fx.js en <html>. */
+:root { --ease: cubic-bezier(.2, .8, .2, 1); }
+
+@keyframes fx-rise { from { opacity: 0; transform: translateY(14px) scale(.985); } }
+@keyframes fx-fade { from { opacity: 0; } }
+@keyframes fx-sweep { from { transform: scaleX(0); } }
+@keyframes fx-gradient { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes fx-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(0, 170, 255, .45); } 50% { box-shadow: 0 0 0 6px rgba(0, 170, 255, 0); } }
+
+/* ── Fondo animado (canvas que agrega fx.js) ── */
+#fx-bg { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.fx .app-shell { position: relative; z-index: 1; }
+
+/* ── Entrada de página: el CSS se dispara cada vez que Dash inserta elementos nuevos ── */
+.fx .content .section-header { animation: fx-fade .5s var(--ease) both; }
+.fx .kpi-box { animation: fx-rise .55s var(--ease) both; }
+.fx .kpi-box::before { animation: fx-sweep .7s var(--ease) both; transform-origin: left; }
+.fx .content .ps-card, .fx .content .step { animation: fx-rise .6s var(--ease) both; }
+.fx .insight-box { animation: fx-rise .45s var(--ease) both; }
+
+/* Cascada: cada hermano entra un poco después */
+.fx .kpi-grid > :nth-child(2) { animation-delay: 70ms; }
+.fx .kpi-grid > :nth-child(3) { animation-delay: 140ms; }
+.fx .kpi-grid > :nth-child(4) { animation-delay: 210ms; }
+.fx .kpi-grid > :nth-child(5) { animation-delay: 280ms; }
+.fx .kpi-grid > :nth-child(n+6) { animation-delay: 350ms; }
+.fx .kpi-grid > :nth-child(1)::before { animation-delay: 200ms; }
+.fx .kpi-grid > :nth-child(2)::before { animation-delay: 270ms; }
+.fx .kpi-grid > :nth-child(3)::before { animation-delay: 340ms; }
+.fx .kpi-grid > :nth-child(4)::before { animation-delay: 410ms; }
+.fx .kpi-grid > :nth-child(n+5)::before { animation-delay: 480ms; }
+.fx .content .grid > .ps-card { animation-delay: 150ms; }
+.fx .content .grid > .ps-card:nth-child(2) { animation-delay: 260ms; }
+.fx .content .grid > .ps-card:nth-child(n+3) { animation-delay: 370ms; }
+.fx .step:nth-child(2) { animation-delay: 80ms; }
+.fx .step:nth-child(3) { animation-delay: 160ms; }
+.fx .step:nth-child(4) { animation-delay: 240ms; }
+.fx .step:nth-child(n+5) { animation-delay: 320ms; }
+.fx .insight-box:nth-child(1) { animation-delay: 350ms; }
+.fx .insight-box:nth-child(2) { animation-delay: 420ms; }
+.fx .insight-box:nth-child(3) { animation-delay: 490ms; }
+.fx .insight-box:nth-child(4) { animation-delay: 560ms; }
+.fx .insight-box:nth-child(5) { animation-delay: 630ms; }
+.fx .insight-box:nth-child(n+6) { animation-delay: 700ms; }
+
+/* ── Hover: elevación y brillo ── */
+.fx .kpi-box, .fx .ps-card, .fx .step { transition: transform .25s var(--ease), border-color .25s, box-shadow .25s; }
+.fx .kpi-box:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--kpi-color, var(--blue)) 55%, var(--border));
+  box-shadow: 0 10px 28px -12px color-mix(in srgb, var(--kpi-color, var(--blue)) 60%, transparent);
+}
+.fx .ps-card:hover { border-color: rgba(0, 170, 255, .35); box-shadow: 0 12px 32px -18px rgba(0, 170, 255, .5); }
+.fx .step:hover { transform: translateY(-3px); box-shadow: 0 10px 26px -14px var(--step-color, var(--blue)); }
+.fx .insight-box { transition: transform .2s var(--ease), background .2s; }
+.fx .insight-box:hover { transform: translateX(4px); background: color-mix(in srgb, #0D1F3C 80%, var(--blue)); }
+
+/* ── Sidebar: logo con degradado vivo, indicador que se desliza, iconos que reaccionan ── */
+.fx .brand-logo { background-size: 200% 200%; animation: fx-gradient 6s ease infinite; }
+.fx .nav-item { position: relative; z-index: 1; }
+.fx .nav-item i { transition: transform .2s var(--ease); }
+.fx .nav-item:hover i { transform: scale(1.15) rotate(-6deg); }
+.fx.fx-pill .nav-item.active { background: transparent; border-left-color: transparent; }
+.fx-nav-pill {
+  position: absolute; left: 8px; right: 8px; top: 0; height: 0; border-radius: 8px; z-index: 0;
+  background: rgba(0, 112, 209, .14); border-left: 3px solid var(--blue); pointer-events: none;
+  transition: transform .35s var(--ease), height .35s var(--ease);
+}
+@media (max-width: 760px) { .fx .sidebar { position: relative; } }  /* el indicador se ubica respecto al menú */
+.fx .filters .dash-slider-thumb { animation: fx-pulse 2.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx *, .fx *::before { animation: none !important; transition: none !important; }
+  #fx-bg { display: none; }
+}
